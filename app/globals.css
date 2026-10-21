@@ -727,15 +727,12 @@
 
 /* Desk objects frame the introduction and crop at the scene edges. */
 .home-scene {
-  /* Matches the current drawer margin and header height. */
   --home-top-margin: 0.5rem;
   --home-header-height: calc(4rem + 1px);
-
-  /* Space remaining below the home scene. */
   --home-bottom-space: 1rem;
 
   height: calc(
-    100dvh
+    100svh
     - var(--home-top-margin)
     - 1px
     - var(--home-header-height)
