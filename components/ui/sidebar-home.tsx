@@ -34,8 +34,34 @@ export default function SidebarHome({
         "
       >
         <Link
-          href="/"
-          onClick={onNavigate}
+          href="/#home"
+          onClick={(event) => {
+            // Preserve opening the link in a new tab.
+            if (
+              event.button !== 0 ||
+              event.ctrlKey ||
+              event.metaKey ||
+              event.shiftKey ||
+              event.altKey
+            ) {
+              return;
+            }
+
+            onNavigate?.();
+
+            if (window.location.pathname === "/") {
+              event.preventDefault();
+
+              window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
+                  .matches
+                  ? "instant"
+                  : "smooth",
+              });
+            }
+          }}
           aria-label="Go to home"
           className="
             block overflow-hidden
@@ -92,7 +118,7 @@ export default function SidebarHome({
             className="
               flex overflow-hidden
               min-w-0
-              whitespace-nowrap font-body text-sm font-semibold leading-5
+              whitespace-nowrap font-heading text-sm font-semibold leading-5
               pointer-events-none transition-opacity
               absolute inset-y-0 left-11 right-2 items-center duration-[var(--duration-normal)] ease-[var(--ease-standard)] is-drawer-close:opacity-0 is-drawer-close:delay-0 is-drawer-open:opacity-100 is-drawer-open:delay-100 motion-reduce:transition-none
             "

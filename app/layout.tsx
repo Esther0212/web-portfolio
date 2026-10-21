@@ -1,9 +1,22 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Script from "next/script";
+import { Montserrat, Geist_Mono } from "next/font/google";
 
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Esther Eblacas | Portfolio",
@@ -39,10 +52,11 @@ export default function RootLayout({
       </head>
 
       <body
-        className="
-          font-montserrat
+        className={`
+          font-body
           antialiased
-        "
+          ${montserrat.variable} ${geistMono.variable}
+        `}
       >
         <ThemeProvider>{children}</ThemeProvider>
       </body>

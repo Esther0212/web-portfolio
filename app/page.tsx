@@ -1,4 +1,6 @@
 import Drawer from "@/components/drawer";
+import HomeScene from "@/components/home-scene";
+
 import { cookies } from "next/headers";
 
 export const instant = false;
@@ -11,23 +13,19 @@ export default async function Home() {
     <Drawer
       defaultOpen={drawerOpen}
       title="Esther Eblacas"
-      header={
-        <span
-          className="
-            text-xs text-muted-foreground
-          "
-        >
-          Software Developer
-        </span>
-      }
       footer={
         <>
           <span>© 2026 Esther Eblacas</span>
 
-          <span>Built with Next.js and Tailwind CSS</span>
+          <span>Designed and built from scratch.</span>
         </>
       }
     >
+      {/* Home */}
+      <section id="home">
+        <HomeScene />
+      </section>
+
       {/* About */}
       <section
         id="about"
@@ -37,22 +35,13 @@ export default async function Home() {
           md:px-10
         "
       >
-        <h1
+        <h2
           className="
-            font-montserrat text-4xl font-bold
+            text-3xl font-bold
           "
         >
-          {"Hi, I'm Esther!"}
-        </h1>
-
-        <p
-          className="
-            mt-4
-            text-muted-foreground
-          "
-        >
-          Software Developer
-        </p>
+          About
+        </h2>
       </section>
 
       {/* Projects */}

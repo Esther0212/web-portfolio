@@ -725,6 +725,47 @@
 /* Make dark: utilities follow ThemeProvider's .dark class */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Desk objects frame the introduction and crop at the scene edges. */
+.home-scene {
+  /* Matches the current drawer margin and header height. */
+  --home-top-margin: 0.5rem;
+  --home-header-height: calc(4rem + 1px);
+
+  /* Space remaining below the home scene. */
+  --home-bottom-space: 1rem;
+
+  height: calc(
+    100dvh
+    - var(--home-top-margin)
+    - 1px
+    - var(--home-header-height)
+    - var(--home-bottom-space)
+  );
+
+  min-height: 0;
+  container-type: inline-size;
+}
+
+@media (min-width: 640px) {
+  .home-scene {
+    --home-top-margin: 0.75rem;
+  }
+}
+
+.home-scene-object {
+  left: var(--scene-mobile-left);
+  top: var(--scene-mobile-top);
+  width: var(--scene-mobile-width);
+}
+
+@container (min-width: 640px) {
+  .home-scene-object {
+    left: var(--scene-left);
+    top: var(--scene-top);
+    width: var(--scene-width);
+  }
+}
+
 /* =========================================================
    17. THEME-AWARE DAISYUI TOOLTIPS
    ========================================================= */
