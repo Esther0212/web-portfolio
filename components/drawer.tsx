@@ -124,20 +124,16 @@ export default function Drawer({
 
       {/* Elevated content */}
       <div
-        className="
-          drawer-content relative
-          flex min-w-0 flex-col
-
-          m-2 sm:m-3
-          overflow-hidden
-
-          rounded-[var(--radius)]
-          border border-border
-
-          bg-background text-foreground
-          shadow-[var(--shadow-elevated)]
-        "
-      >
+  className="
+    portfolio-content drawer-content relative
+    flex min-w-0 flex-col
+    m-2 sm:m-3
+    rounded-[var(--radius)]
+    border border-border
+    bg-background text-foreground
+    shadow-[var(--shadow-elevated)]
+  "
+>
         <Header
           drawerId={drawerId}
           sidebarExpanded={isOpen}

@@ -802,3 +802,82 @@
 [data-tip]::after {
   background-color: var(--portfolio-tooltip-bg);
 }
+
+/* =========================================================
+   18. RETURNING HEADER
+   ========================================================= */
+
+.portfolio-content {
+  --header-top-gap: 0.5rem;
+
+  /*
+   * The header wrapper supplies the original top gap
+   * and top border instead of the outer frame.
+   */
+  margin-top: 0;
+  border-top-width: 0;
+
+  overflow: visible;
+  box-shadow: none;
+}
+
+@media (min-width: 640px) {
+  .portfolio-content {
+    --header-top-gap: 0.75rem;
+  }
+}
+
+/*
+ * The opaque gap and header slide together.
+ * Main cannot paint over this surface.
+ */
+.portfolio-scroll-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+
+  flex-shrink: 0;
+
+  width: calc(100% + 2px);
+  margin-inline: -1px;
+
+  padding-top: var(--header-top-gap);
+
+  background-color: var(--sidebar);
+  box-shadow: none;
+}
+
+/*
+ * Keep the original frame border outside the header.
+ * The header's own height remains unchanged.
+ */
+.portfolio-header-surface {
+  border: 1px solid var(--border);
+  border-bottom: 0;
+
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+
+  overflow: hidden;
+  background-color: var(--background);
+
+  box-shadow: none;
+}
+
+/* Contain images within Main. */
+.portfolio-content > main {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+/* Allow images to overflow Home into neighboring sections. */
+.portfolio-content > main > #home,
+.portfolio-content > main > #home .home-scene {
+  overflow: visible;
+}
+
+.portfolio-content > footer {
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
