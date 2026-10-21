@@ -52,6 +52,8 @@ export default function SidebarHome({
             if (window.location.pathname === "/") {
               event.preventDefault();
 
+              window.history.replaceState(null, "", "/");
+
               window.scrollTo({
                 top: 0,
                 left: 0,

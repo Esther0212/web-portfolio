@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -44,69 +45,95 @@ const objects = [
 ];
 
 export default function HomeScene() {
-  const [arrangement, setArrangement] = useState<"scattered" | "tidy">(
-    "scattered",
-  );
+  const [arrangement, setArrangement] = useState<
+    "scattered" | "tidy"
+  >("scattered");
 
   const reduceMotion = useReducedMotion();
 
   return (
     <div className="home-scene relative isolate w-full">
-      {/* Pictures */}
-      <div aria-hidden="true" className="absolute inset-0 z-0">
-        {objects.map((object) => (
-          <motion.div
-            key={object.file}
-            initial={false}
-            animate={object[arrangement]}
-            transition={
-              reduceMotion
-                ? { duration: 0 }
-                : {
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 22,
-                  }
-            }
-            style={{ width: object.width }}
-            className="absolute aspect-square"
-          >
+      {/* Interactive images */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-0"
+      >
+        {objects.map((object) => {
+          const isNotebook = object.file === "notebook.png";
+
+          return (
             <motion.div
-              className="relative h-full w-full"
-              whileHover={
+              key={object.file}
+              initial={false}
+              animate={object[arrangement]}
+              transition={
                 reduceMotion
-                  ? undefined
+                  ? { duration: 0 }
                   : {
-                      scale: 1.08,
-                      rotate: 5,
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 22,
                     }
               }
+              style={{ width: object.width }}
+              className="absolute aspect-square"
             >
-              <Image
-                src={`/interactive-images/${object.file}`}
-                alt=""
-                fill
-                sizes={object.width}
-                draggable={false}
-                className="select-none object-contain drop-shadow-lg"
-              />
+              <motion.div
+                className="relative h-full w-full"
+                whileHover={
+                  reduceMotion
+                    ? undefined
+                    : {
+                        scale: 1.08,
+                        rotate: 5,
+                      }
+                }
+              >
+                <Image
+                  src={`/interactive-images/${object.file}`}
+                  alt=""
+                  fill
+                  sizes={object.width}
+                  loading={isNotebook ? "eager" : "lazy"}
+                  draggable={false}
+                  className="
+                    select-none
+                    object-contain
+                    drop-shadow-lg
+                  "
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Introduction */}
-      <div className="pointer-events-none relative z-10 flex h-full flex-col items-center justify-center px-6 pb-20 text-center">
+      <div
+        className="
+          pointer-events-none relative z-10
+          flex h-full flex-col
+          items-center justify-center
+          px-6 pb-20 text-center
+        "
+      >
         <p className="text-sm text-muted-foreground">
           Welcome to my portfolio
         </p>
 
-        <h1 className="mt-3 font-heading text-4xl font-bold sm:text-5xl">
+        <h1
+          className="
+            mt-3 font-heading
+            text-4xl font-bold
+            sm:text-5xl
+          "
+        >
           Esther Beuthel Eblacas
         </h1>
 
         <p className="mt-4 max-w-md text-muted-foreground">
-          I build thoughtful web experiences through design and code.
+          I build thoughtful web experiences through
+          design and code.
         </p>
       </div>
 
@@ -114,7 +141,12 @@ export default function HomeScene() {
       <div
         role="group"
         aria-label="Picture arrangement"
-        className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 gap-2 rounded-full border border-border bg-background/90 p-2"
+        className="
+          absolute bottom-6 left-1/2 z-20
+          flex -translate-x-1/2 gap-2
+          rounded-full border border-border
+          bg-background/90 p-2
+        "
       >
         {(["scattered", "tidy"] as const).map((option) => (
           <button
@@ -122,11 +154,15 @@ export default function HomeScene() {
             type="button"
             aria-pressed={arrangement === option}
             onClick={() => setArrangement(option)}
-            className={`rounded-full px-4 py-2 text-sm capitalize transition-colors ${
-              arrangement === option
-                ? "bg-foreground text-background"
-                : "text-foreground hover:bg-muted"
-            }`}
+            className={`
+              rounded-full px-4 py-2
+              text-sm capitalize transition-colors
+              ${
+                arrangement === option
+                  ? "bg-foreground text-background"
+                  : "text-foreground hover:bg-muted"
+              }
+            `}
           >
             {option}
           </button>

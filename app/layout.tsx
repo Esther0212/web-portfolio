@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Esther Eblacas | Portfolio",
+  title: "Esther Beuthel Eblacas | Portfolio",
   description: "Personal software developer portfolio",
 };
 

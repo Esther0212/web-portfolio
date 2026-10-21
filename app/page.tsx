@@ -15,7 +15,7 @@ export default async function Home() {
       title="Esther Eblacas"
       footer={
         <>
-          <span>© 2026 Esther Eblacas</span>
+          <span>© 2026 Esther Beuthel Eblacas</span>
 
           <span>Designed and built from scratch.</span>
         </>
