@@ -34,10 +34,6 @@ const objects = [
     zIndex: 1,
     scattered: { left: "-15%", top: "-40%", rotate: -30 },
     tidy: { left: "28%", top: "-45%", rotate: 0 },
-
-    // Edit these two layouts independently.
-    portrait: { left: "calc(100% - 760px)", top: "-20%", rotate: -30 },
-    landscape: { left: "calc(100% - 1200px)", top: "-20%", rotate: -30 },
   },
   {
     file: "mouse.png",
@@ -45,9 +41,6 @@ const objects = [
     zIndex: 2,
     scattered: { left: "30%", top: "85%", rotate: -40 },
     tidy: { left: "65%", top: "-3%", rotate: 0 },
-
-    portrait: { left: "30%", top: "85%", rotate: -40 },
-    landscape: { left: "calc(100% - 400px)", top: "85%", rotate: -40 },
   },
   {
     file: "plant.png",
@@ -55,9 +48,6 @@ const objects = [
     zIndex: 4,
     scattered: { left: "25%", top: "-30%", rotate: 10 },
     tidy: { left: "-7%", top: "-14%", rotate: 0 },
-
-    portrait: { left: "calc(100% - 340px)", top: "-20%", rotate: 10 },
-    landscape: { left: "calc(100% - 700px)", top: "-20%", rotate: 10 },
   },
   {
     file: "torn-paper.png",
@@ -65,9 +55,6 @@ const objects = [
     zIndex: 1,
     scattered: { left: "75%", top: "25%", rotate: -6 },
     tidy: { left: "80%", top: "40%", rotate: 0 },
-
-    portrait: { left: "75%", top: "25%", rotate: -6 },
-    landscape: { left: "calc(100% - 250px)", top: "15%", rotate: -6 },
   },
   {
     file: "phone.png",
@@ -75,9 +62,6 @@ const objects = [
     zIndex: 3,
     scattered: { left: "50%", top: "-20%", rotate: 40 },
     tidy: { left: "10%", top: "-15%", rotate: 0 },
-
-    portrait: { left: "calc(100% - 170px)", top: "-10%", rotate: 20 },
-    landscape: { left: "calc(100% - 500px)", top: "-10%", rotate: 40 },
   },
   {
     file: "coffee.png",
@@ -85,9 +69,6 @@ const objects = [
     zIndex: 2,
     scattered: { left: "70%", top: "80%", rotate: -20 },
     tidy: { left: "85%", top: "75%", rotate: 0 },
-
-    portrait: { left: "70%", top: "80%", rotate: -20 },
-    landscape: { left: "calc(100% - 250px)", top: "calc(100% - 130px)", rotate: -20 },
   },
   {
     file: "notebook.png",
@@ -95,9 +76,6 @@ const objects = [
     zIndex: 1,
     scattered: { left: "75%", top: "-20%", rotate: -8 },
     tidy: { left: "0%", top: "50%", rotate: 0 },
-
-    portrait: { left: "75%", top: "-20%", rotate: -8 },
-    landscape: { left: "calc(100% - 220px)", top: "-30%", rotate: -8 },
   },
   {
     file: "pen.png",
@@ -105,9 +83,6 @@ const objects = [
     zIndex: 2,
     scattered: { left: "10%", top: "75%", rotate: 15 },
     tidy: { left: "25%", top: "65%", rotate: -35 },
-
-    portrait: { left: "-35%", top: "30%", rotate: 15 },
-    landscape: { left: "calc(100% - 600px)", top: "75%", rotate: 15 },
   },
   {
     file: "lamp.png",
@@ -115,19 +90,12 @@ const objects = [
     zIndex: 3,
     scattered: { left: "90%", top: "61%", rotate: 25, scaleX: -1 },
     tidy: { left: "-13%", top: "50%", rotate: 20, scaleX: 1 },
-
-    portrait: { left: "calc(100% - 100px)", top: "55%", rotate: 25, scaleX: -1 },
-    landscape: { left: "calc(100% - 130px)", top: "61%", rotate: 25, scaleX: -1 },
   },
 ];
 
 const musicPositions = {
   scattered: { left: "-3%", top: "50%", rotate: 30 },
   tidy: { left: "86.3%", top: "0%", rotate: -12 },
-
-  // Edit the music player's two layouts here.
-  portrait: { left: "-15%", top: "60%", rotate: 50 },
-  landscape: { left: "-3%", top: "50%", rotate: 30 },
 };
 
 export default function HomeScene() {
@@ -136,13 +104,6 @@ export default function HomeScene() {
   );
 
   const isPhoneOrTablet = useMediaQuery(deviceQuery);
-  const isPortrait = useMediaQuery("(orientation: portrait)");
-
-  const activeArrangement = isPhoneOrTablet
-    ? isPortrait
-      ? "portrait"
-      : "landscape"
-    : arrangement;
 
   const reduceMotion = useReducedMotion();
 
@@ -154,7 +115,7 @@ export default function HomeScene() {
           <motion.div
             key={object.file}
             initial={false}
-            animate={object[activeArrangement]}
+            animate={object[arrangement]}
             transition={
               reduceMotion
                 ? { duration: 0 }
@@ -203,7 +164,7 @@ export default function HomeScene() {
       {/* Music player */}
       <motion.div
         initial={false}
-        animate={musicPositions[activeArrangement]}
+        animate={musicPositions[arrangement]}
         transition={
           reduceMotion
             ? { duration: 0 }
