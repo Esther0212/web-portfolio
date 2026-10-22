@@ -262,7 +262,7 @@ const musicPositions: Record<
     // Relative to the same notebook group.
     left: "10%",
     top: "70%",
-    rotate: 78,
+    rotate: -100,
     zIndex: 1,
   },
 };
