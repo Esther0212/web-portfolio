@@ -35,7 +35,7 @@ const objects = [
     tidy: { left: "28%", top: "-45%", rotate: 0 },
 
     // Edit these two layouts independently.
-    portrait: { left: "calc(100% - 760px)", top: "-40%", rotate: -30 },
+    portrait: { left: "calc(100% - 760px)", top: "-20%", rotate: -30 },
     landscape: { left: "calc(100% - 1200px)", top: "-40%", rotate: -30 },
   },
   {
@@ -51,11 +51,11 @@ const objects = [
   {
     file: "plant.png",
     width: "260px",
-    zIndex: 3,
+    zIndex: 4,
     scattered: { left: "25%", top: "-30%", rotate: 10 },
     tidy: { left: "-7%", top: "-14%", rotate: 0 },
 
-    portrait: { left: "calc(100% - 300px)", top: "-30%", rotate: 10 },
+    portrait: { left: "calc(100% - 340px)", top: "-20%", rotate: 10 },
     landscape: { left: "calc(100% - 700px)", top: "-30%", rotate: 10 },
   },
   {
@@ -75,7 +75,7 @@ const objects = [
     scattered: { left: "50%", top: "-20%", rotate: 40 },
     tidy: { left: "10%", top: "-15%", rotate: 0 },
 
-    portrait: { left: "calc(100% - 170px)", top: "-20%", rotate: 20 },
+    portrait: { left: "calc(100% - 170px)", top: "-10%", rotate: 20 },
     landscape: { left: "calc(100% - 500px)", top: "-20%", rotate: 40 },
   },
   {
@@ -125,7 +125,7 @@ const musicPositions = {
   tidy: { left: "86.3%", top: "0%", rotate: -12 },
 
   // Edit the music player's two layouts here.
-  portrait: { left: "-15%", top: "50%", rotate: 50 },
+  portrait: { left: "-15%", top: "60%", rotate: 50 },
   landscape: { left: "-3%", top: "50%", rotate: 30 },
 };
 
