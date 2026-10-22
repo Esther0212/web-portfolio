@@ -902,25 +902,26 @@
   margin-inline: auto;
 }
 
-/* Compact mode: same tablet/phone rule as your existing component. */
+/* Fixed text sizes across all compact screens. */
 @media
   (max-width: 1023px),
   (max-width: 1366px) and (pointer: coarse) {
 
   .home-intro-welcome {
-    font-size: min(0.875rem, 4.6cqi);
+    font-size: var(--text-small-size);
+    line-height: var(--leading-body);
     white-space: nowrap;
   }
 
   .home-intro-name {
-    font-size: min(3rem, 11cqi);
-    line-height: 1.15;
+    font-size: 2.5rem;
+    line-height: var(--leading-heading);
   }
 
   .home-intro-description {
     max-width: none;
-    font-size: min(1rem, 4.6cqi);
-    line-height: 1.6;
+    font-size: var(--text-small-size);
+    line-height: var(--leading-body);
   }
 
   .home-intro-line {
@@ -932,4 +933,21 @@
 /* Center within Home's existing main-area height. */
 .home-intro {
   padding-block: 0;
+}
+
+@media
+  (max-width: 1023px),
+  (max-width: 1366px) and (pointer: coarse) {
+
+  .home-intro {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    width: 100%;
+    height: auto;
+    padding-block: 0;
+
+    transform: translate(-50%, -50%);
+  }
 }
