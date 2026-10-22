@@ -22,7 +22,7 @@ export default async function Home() {
       }
     >
       {/* Home */}
-      <section id="home">
+      <section id="home" className="pb-64">
         <HomeScene />
       </section>
 

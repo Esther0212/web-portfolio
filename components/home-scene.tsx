@@ -5,6 +5,7 @@ import { useState, useSyncExternalStore } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 import MusicPlayer from "./music-player";
+import { homeSceneHitAreas } from "@/lib/home-scene-hit-areas";
 
 // Narrow screens, plus touch devices up to 1366px wide.
 const deviceQuery =
@@ -36,7 +37,7 @@ const objects = [
 
     // Edit these two layouts independently.
     portrait: { left: "calc(100% - 760px)", top: "-20%", rotate: -30 },
-    landscape: { left: "calc(100% - 1200px)", top: "-40%", rotate: -30 },
+    landscape: { left: "calc(100% - 1200px)", top: "-20%", rotate: -30 },
   },
   {
     file: "mouse.png",
@@ -56,7 +57,7 @@ const objects = [
     tidy: { left: "-7%", top: "-14%", rotate: 0 },
 
     portrait: { left: "calc(100% - 340px)", top: "-20%", rotate: 10 },
-    landscape: { left: "calc(100% - 700px)", top: "-30%", rotate: 10 },
+    landscape: { left: "calc(100% - 700px)", top: "-20%", rotate: 10 },
   },
   {
     file: "torn-paper.png",
@@ -76,7 +77,7 @@ const objects = [
     tidy: { left: "10%", top: "-15%", rotate: 0 },
 
     portrait: { left: "calc(100% - 170px)", top: "-10%", rotate: 20 },
-    landscape: { left: "calc(100% - 500px)", top: "-20%", rotate: 40 },
+    landscape: { left: "calc(100% - 500px)", top: "-10%", rotate: 40 },
   },
   {
     file: "coffee.png",
@@ -113,7 +114,7 @@ const objects = [
     width: "300px",
     zIndex: 3,
     scattered: { left: "90%", top: "61%", rotate: 25, scaleX: -1 },
-    tidy: { left: "-13%", top: "50%", rotate: 5, scaleX: 1 },
+    tidy: { left: "-13%", top: "50%", rotate: 20, scaleX: 1 },
 
     portrait: { left: "calc(100% - 100px)", top: "55%", rotate: 25, scaleX: -1 },
     landscape: { left: "calc(100% - 130px)", top: "61%", rotate: 25, scaleX: -1 },
@@ -167,7 +168,7 @@ export default function HomeScene() {
               width: object.width,
               zIndex: object.zIndex,
             }}
-            className="absolute aspect-square"
+            className="pointer-events-none absolute aspect-square"
           >
             <motion.div
               whileHover={
@@ -180,6 +181,11 @@ export default function HomeScene() {
               }
               className="h-full w-full relative"
             >
+              {/* Only the object's outline receives hover; keep its shadow visible. */}
+              <span
+                className="pointer-events-auto absolute inset-0"
+                style={{ clipPath: homeSceneHitAreas[object.file] }}
+              />
               <Image
                 src={`/interactive-images/${object.file}`}
                 alt=""
@@ -187,7 +193,7 @@ export default function HomeScene() {
                 sizes={object.width}
                 loading={object.file === "notebook.png" ? "eager" : "lazy"}
                 draggable={false}
-                className="object-contain select-none drop-shadow-lg"
+                className="pointer-events-none object-contain select-none drop-shadow-lg"
               />
             </motion.div>
           </motion.div>
