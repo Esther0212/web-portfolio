@@ -883,3 +883,57 @@
 .drawer > .drawer-side {
   z-index: 50;
 }
+
+/*
+ * Text sizes can respond to the introduction's available width.
+ * This does not change Home's height.
+ */
+.home-intro-content {
+  width: 100%;
+  min-width: 0;
+  container-type: inline-size;
+}
+
+/* Keep each text element's hover area close to its text. */
+.home-intro-welcome,
+.home-intro-name,
+.home-intro-description {
+  width: fit-content;
+  margin-inline: auto;
+}
+
+/* Compact mode: same tablet/phone rule as your existing component. */
+@media
+  (max-width: 1023px),
+  (max-width: 1366px) and (pointer: coarse) {
+
+  .home-intro-welcome {
+    font-size: min(0.875rem, 4.6cqi);
+    white-space: nowrap;
+  }
+
+  .home-intro-name {
+    font-size: min(3rem, 11cqi);
+    line-height: 1.15;
+  }
+
+  .home-intro-description {
+    max-width: none;
+    font-size: min(1rem, 4.6cqi);
+    line-height: 1.6;
+  }
+
+  .home-intro-line {
+    display: block;
+    white-space: nowrap;
+  }
+}
+
+/* Center the introduction vertically in compact mode. */
+@media
+  (max-width: 1023px),
+  (max-width: 1366px) and (pointer: coarse) {
+  .home-intro {
+    padding-bottom: 0;
+  }
+}
