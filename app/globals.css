@@ -929,11 +929,7 @@
   }
 }
 
-/* Center the introduction vertically in compact mode. */
-@media
-  (max-width: 1023px),
-  (max-width: 1366px) and (pointer: coarse) {
-  .home-intro {
-    padding-bottom: 0;
-  }
+/* Center within Home's existing main-area height. */
+.home-intro {
+  padding-block: 0;
 }

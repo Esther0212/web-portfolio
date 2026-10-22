@@ -463,17 +463,13 @@ export default function HomeScene() {
           relative z-10
           flex h-full flex-col
           items-center justify-center
-          px-6 pb-20
+          px-6
           text-center
         "
       >
         <div className="home-intro-content">
           <motion.p
-            whileHover={
-              reduceMotion || isPhoneOrTablet
-                ? undefined
-                : { scale: 1.2 }
-            }
+            whileHover={reduceMotion ? undefined : { scale: 1.1 }}
             className="
               home-intro-welcome
               pointer-events-auto
@@ -485,11 +481,7 @@ export default function HomeScene() {
           </motion.p>
 
           <motion.h1
-            whileHover={
-              reduceMotion || isPhoneOrTablet
-                ? undefined
-                : { scale: 1.2 }
-            }
+            whileHover={reduceMotion ? undefined : { scale: 1.1 }}
             className="
               home-intro-name
               pointer-events-auto
@@ -508,11 +500,7 @@ export default function HomeScene() {
           </motion.h1>
 
           <motion.p
-            whileHover={
-              reduceMotion || isPhoneOrTablet
-                ? undefined
-                : { scale: 1.2 }
-            }
+            whileHover={reduceMotion ? undefined : { scale: 1.1 }}
             className="
               home-intro-description
               pointer-events-auto
