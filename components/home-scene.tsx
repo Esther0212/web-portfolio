@@ -54,7 +54,7 @@ function useMediaQuery(query: string) {
 const compactGroup = {
   width: "500px",
   left: "50%",
-  top: "10%",
+  top: "50%",
 };
 
 /*
@@ -406,7 +406,7 @@ export default function HomeScene() {
                 top: compactGroup.top,
                 width: compactGroup.width,
                 height: compactGroup.width,
-                transform: "translateX(-50%)",
+                transform: "translate(-50%, -50%)",
               }
             : {
                 inset: 0,
