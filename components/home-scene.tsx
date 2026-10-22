@@ -41,38 +41,12 @@ function useMediaQuery(query: string) {
   );
 }
 
-/*
- * COMPACT GROUP
- *
- * This square is the notebook's size.
- * Every compact image is positioned relative to this square.
- *
- * Change left/top to move the WHOLE group.
- * Change width to change the notebook/group size.
- * The other images retain their own fixed sizes.
- */
 const compactGroup = {
   width: "500px",
   left: "50%",
   top: "50%",
 };
 
-/*
- * COMPACT POSITION GUIDE
- *
- * left: "0%"   = group's left edge
- * left: "50%"  = group's horizontal middle
- * left: "100%" = group's right edge
- *
- * top: "0%"    = group's top edge
- * top: "50%"   = group's vertical middle
- * top: "100%"  = group's bottom edge
- *
- * Negative percentages place an image outside the group.
- *
- * x/y percentages refer to the individual image's own size.
- * left/top percentages refer to the group's size.
- */
 const objects: SceneObject[] = [
   {
     file: "laptop.png",
@@ -130,8 +104,8 @@ const objects: SceneObject[] = [
       rotate: 0,
     },
     compact: {
-      left: "80%",
-      top: "60%",
+      left: "60%",
+      top: "70%",
       rotate: 10,
     },
   },
@@ -170,8 +144,8 @@ const objects: SceneObject[] = [
       rotate: 0,
     },
     compact: {
-      left: "10%",
-      top: "65%",
+      left: "60%",
+      top: "-30%",
       rotate: 90,
     },
   },
@@ -190,7 +164,7 @@ const objects: SceneObject[] = [
       rotate: 0,
     },
     compact: {
-      left: "95%",
+      left: "80%",
       top: "30%",
       rotate: -20,
     },
@@ -234,8 +208,8 @@ const objects: SceneObject[] = [
       rotate: -35,
     },
     compact: {
-      left: "60%",
-      top: "50%",
+      left: "50%",
+      top: "60%",
       rotate: 5,
     },
   },
@@ -257,12 +231,12 @@ const objects: SceneObject[] = [
     },
     compact: {
       // Centered above the torn paper's image box.
-      left: "110%",
-      top: "60%",
+      left: "-10%",
+      top: "75%",
       x: "-50%",
       y: "-100%",
       rotate: 5,
-      scaleX: -1,
+      scaleX: 1,
       zIndex: 1,
     },
   },
@@ -286,10 +260,10 @@ const musicPositions: Record<
   },
   compact: {
     // Relative to the same notebook group.
-    left: "-30%",
-    top: "40%",
-    rotate: 0,
-    zIndex: 0,
+    left: "10%",
+    top: "70%",
+    rotate: 78,
+    zIndex: 1,
   },
 };
 
@@ -437,6 +411,7 @@ export default function HomeScene() {
             y: 0,
             ...musicPositions[activeArrangement],
           }}
+          whileHover={reduceMotion ? undefined : { rotate: 0 }}
           transition={
             reduceMotion
               ? { duration: 0 }
