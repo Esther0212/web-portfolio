@@ -240,13 +240,10 @@
   --radius-sm: calc(var(--radius) - 4px);
 
   /* Font families */
-  --font-body: var(--font-montserrat, "Montserrat", sans-serif);
+  --font-body: var(--font-montserrat, sans-serif);
   --font-heading: var(--font-geist-mono, monospace);
-  --font-code: var(--font-jetbrains-mono, monospace);
-
-  /* Backward-compatible font utilities
-     Note: No self-referencing declarations here. */
-  --font-mono: var(--font-jetbrains-mono, monospace);
+  --font-mono: var(--font-oxanium, sans-serif);
+  --font-display: var(--font-oxanium, sans-serif);
 }
 
 /* =========================================================
@@ -256,7 +253,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 2rem;
   }
 
   body {
@@ -428,7 +425,7 @@
   pre,
   kbd,
   samp {
-    font-family: var(--font-jetbrains-mono, monospace);
+    font-family: var(--font-oxanium, sans-serif);
 
     font-size: 0.875em;
     line-height: var(--leading-code);
@@ -614,7 +611,7 @@
 
   /* Technical emphasized text */
   .text-code {
-    font-family: var(--font-jetbrains-mono, monospace);
+    font-family: var(--font-oxanium, sans-serif);
 
     font-size: 0.875em;
     font-weight: 500;
@@ -623,7 +620,7 @@
 
   /* Small section labels */
   .text-eyebrow {
-    font-family: var(--font-jetbrains-mono, monospace);
+    font-family: var(--font-oxanium, sans-serif);
 
     font-size: 0.75rem;
     font-weight: 600;
@@ -732,11 +729,8 @@
   --home-bottom-space: 1rem;
 
   height: calc(
-    100svh
-    - var(--home-top-margin)
-    - 1px
-    - var(--home-header-height)
-    - var(--home-bottom-space)
+    100svh - var(--home-top-margin) - 1px - var(--home-header-height) -
+      var(--home-bottom-space)
   );
 
   min-height: 0;
@@ -903,10 +897,7 @@
 }
 
 /* Fixed text sizes across all compact screens. */
-@media
-  (max-width: 1023px),
-  (max-width: 1366px) and (pointer: coarse) {
-
+@media (max-width: 1023px), (max-width: 1366px) and (pointer: coarse) {
   .home-intro-welcome {
     font-size: var(--text-small-size);
     line-height: var(--leading-body);
@@ -935,10 +926,7 @@
   padding-block: 0;
 }
 
-@media
-  (max-width: 1023px),
-  (max-width: 1366px) and (pointer: coarse) {
-
+@media (max-width: 1023px), (max-width: 1366px) and (pointer: coarse) {
   .home-intro {
     position: absolute;
     left: 50%;
@@ -949,5 +937,49 @@
     padding-block: 0;
 
     transform: translate(-50%, -50%);
+  }
+}
+
+/* Keep the music player light in either site theme. */
+.music-player-light {
+  color-scheme: light;
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.153 0.006 107.1);
+  --foreground: oklch(0.153 0.006 107.1);
+
+  --primary: oklch(0.508 0.118 165.612);
+  --primary-foreground: oklch(0.979 0.021 166.113);
+
+  --muted: oklch(0.966 0.005 106.5);
+  --muted-foreground: oklch(0.58 0.031 107.3);
+
+  --border: oklch(0.93 0.007 106.5);
+  --destructive: oklch(0.577 0.245 27.325);
+
+  --background: oklch(1 0 0);
+  --portfolio-tooltip-bg: #000;
+  --portfolio-tooltip-fg: #fff;
+}
+
+@layer base {
+  /* Default text: Montserrat */
+  body {
+    @apply font-body;
+  }
+
+  /* Headings: Geist Mono */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  /* Paragraphs: Montserrat */
+  p {
+    @apply font-body;
+  }
+
+  /* Code: Oxanium */
+  code, pre, kbd, samp {
+    @apply font-mono;
   }
 }

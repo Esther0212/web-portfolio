@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Script from "next/script";
-import { Montserrat, Geist_Mono } from "next/font/google";
+import { Montserrat, Geist_Mono, Oxanium } from "next/font/google";
 
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
@@ -15,6 +15,12 @@ const montserrat = Montserrat({
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
+  display: "swap",
+});
+
+const oxanium = Oxanium({
+  subsets: ["latin"],
+  variable: "--font-oxanium",
   display: "swap",
 });
 
@@ -55,7 +61,7 @@ export default function RootLayout({
         className={`
           font-body
           antialiased
-          ${montserrat.variable} ${geistMono.variable}
+          ${montserrat.variable} ${geistMono.variable} ${oxanium.variable}
         `}
       >
         <ThemeProvider>{children}</ThemeProvider>

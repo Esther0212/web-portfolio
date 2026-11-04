@@ -9,20 +9,6 @@ export type MusicTrack = {
 
 export const musicPlaylist: MusicTrack[] = [
   {
-    id: "park-vibes",
-    title: "Park Vibes",
-    artist: "Filo Starquez",
-    file: "Park Vibes - Filo Starquez.mp3",
-    vinylGif: "Park Vibes - Filo Starquez.gif",
-  },
-  {
-    id: "champagne",
-    title: "And Champagne for All",
-    artist: "The Fly Guy Five",
-    file: "The Fly Guy Five - And Champagne for All (Royalty Free Jazz).mp3",
-    vinylGif: "The Fly Guy Five - And Champagne for All (Royalty Free Jazz).gif",
-  },
-  {
     id: "liljeholmsviken",
     title: "Liljeholmsviken",
     artist: "Vendla",

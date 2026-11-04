@@ -208,6 +208,7 @@ export default function MusicPlayer() {
         }
       }}
       className="
+      music-player-light
         overflow-visible
         w-full min-w-0
         px-5 pt-10 pb-10

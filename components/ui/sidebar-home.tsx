@@ -54,6 +54,8 @@ export default function SidebarHome({
 
               window.history.replaceState(null, "", "/");
 
+              window.dispatchEvent(new Event("portfolio:navigate"));
+
               window.scrollTo({
                 top: 0,
                 left: 0,

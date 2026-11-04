@@ -8,7 +8,7 @@ import {
   type TargetAndTransition,
 } from "motion/react";
 
-import MusicPlayer from "./music-player";
+import MusicPlayer from "../music-player";
 import { homeSceneHitAreas } from "@/lib/home-scene-hit-areas";
 
 type DesktopArrangement = "scattered" | "tidy";
@@ -184,12 +184,11 @@ const objects: SceneObject[] = [
       rotate: 0,
     },
     compact: {
-      /*
-       * The notebook fills the group.
-       * Move compactGroup above to move everything together.
-       */
-      left: "0%",
-      top: "0%",
+      width: "450px",
+      left: "50%",
+      top: "50%",
+      x: "-50%",
+      y: "-50%",
       rotate: 0,
     },
   },
@@ -325,11 +324,7 @@ function SceneImage({
           }}
           className={`
             absolute inset-0
-            ${
-              hidden
-                ? "pointer-events-none"
-                : "pointer-events-auto"
-            }
+            ${hidden ? "pointer-events-none" : "pointer-events-auto"}
           `}
         />
 
@@ -338,9 +333,7 @@ function SceneImage({
           alt=""
           fill
           sizes={width}
-          loading={
-            object.file === "notebook.png" ? "eager" : "lazy"
-          }
+          loading={object.file === "notebook.png" ? "eager" : "lazy"}
           draggable={false}
           className="
             pointer-events-none select-none
@@ -359,9 +352,7 @@ export default function HomeScene() {
   const isPhoneOrTablet = useMediaQuery(deviceQuery);
   const reduceMotion = Boolean(useReducedMotion());
 
-  const activeArrangement = isPhoneOrTablet
-    ? "compact"
-    : arrangement;
+  const activeArrangement = isPhoneOrTablet ? "compact" : arrangement;
 
   return (
     <div className="home-scene relative isolate w-full">
@@ -395,8 +386,7 @@ export default function HomeScene() {
             position={object[activeArrangement]}
             reduceMotion={reduceMotion}
             imageWidth={
-              isPhoneOrTablet &&
-              object.file === "notebook.png"
+              isPhoneOrTablet && object.file === "notebook.png"
                 ? compactGroup.width
                 : undefined
             }
@@ -466,12 +456,8 @@ export default function HomeScene() {
               sm:text-5xl
             "
           >
-            <span className="home-intro-line">
-              Esther Beuthel
-            </span>{" "}
-            <span className="home-intro-line">
-              Eblacas
-            </span>
+            <span className="home-intro-line">Esther Beuthel</span>{" "}
+            <span className="home-intro-line">Eblacas</span>
           </motion.h1>
 
           <motion.p
@@ -487,9 +473,7 @@ export default function HomeScene() {
             <span className="home-intro-line">
               I build thoughtful web experiences
             </span>{" "}
-            <span className="home-intro-line">
-              through design and code.
-            </span>
+            <span className="home-intro-line">through design and code.</span>
           </motion.p>
         </div>
       </div>

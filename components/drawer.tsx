@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -22,9 +21,7 @@ import Main from "./main";
 import Footer from "./footer";
 
 import SidebarHome from "./ui/sidebar-home";
-import SidebarNavigation, {
-  type NavigationItem,
-} from "./sidebar-navigation";
+import SidebarNavigation, { type NavigationItem } from "./sidebar-navigation";
 
 import ThemeToggle from "./ui/theme-toggle";
 import SoundToggle from "./ui/sound-toggle";
@@ -43,20 +40,20 @@ export type DrawerProps = ComponentPropsWithoutRef<"div"> & {
 };
 
 const defaultItems: DrawerItem[] = [
-  { label: "About", href: "#about", icon: UserIcon },
-  { label: "Projects", href: "#projects", icon: LaptopIcon },
+  { label: "About", href: "/#about", icon: UserIcon },
+  { label: "Projects", href: "/#projects", icon: LaptopIcon },
   {
     label: "Experience",
-    href: "#experience",
+    href: "/#experience",
     icon: BriefcaseIcon,
   },
-  { label: "Stack", href: "#stack", icon: BookmarkIcon },
+  { label: "Stack", href: "/#stack", icon: BookmarkIcon },
   {
     label: "Education",
-    href: "#education",
+    href: "/#education",
     icon: GraduationCapIcon,
   },
-  { label: "Contact", href: "#contact", icon: PhoneIcon },
+  { label: "Contact", href: "/#contact", icon: PhoneIcon },
 ];
 
 export default function Drawer({
@@ -102,7 +99,6 @@ export default function Drawer({
 
   return (
     <div
-      {...props}
       id="top"
       className={`
         drawer lg:drawer-open
@@ -119,21 +115,25 @@ export default function Drawer({
         onChange={(event) => {
           setIsOpen(event.target.checked);
         }}
-        className="drawer-toggle"
+        className="
+          drawer-toggle
+        "
       />
 
       {/* Elevated content */}
       <div
-  className="
-    portfolio-content drawer-content relative
-    flex min-w-0 flex-col
-    m-2 sm:m-3
-    rounded-[var(--radius)]
-    border border-border
-    bg-background text-foreground
-    shadow-[var(--shadow-elevated)]
-  "
->
+        className="
+          flex flex-col
+          min-w-0
+          m-2
+          text-foreground
+          bg-background
+          rounded-[var(--radius)] border border-border
+          shadow-[var(--shadow-elevated)]
+          portfolio-content drawer-content relative
+          sm:m-3
+        "
+      >
         <Header
           drawerId={drawerId}
           sidebarExpanded={isOpen}
@@ -144,48 +144,36 @@ export default function Drawer({
 
         <Main>{children}</Main>
 
-        {footer !== null && (
-          <Footer>{footer}</Footer>
-        )}
+        {footer !== null && <Footer>{footer}</Footer>}
       </div>
 
       {/* Sidebar */}
       <div
         className="
-          drawer-side
           max-lg:z-50
-          is-drawer-close:overflow-visible
+          drawer-side is-drawer-close:overflow-visible
         "
       >
         {/* Mobile overlay */}
         <label
           htmlFor={drawerId}
           aria-label="Close sidebar"
-          className="drawer-overlay"
+          className="
+            drawer-overlay
+          "
         />
 
         <aside
           id={`${drawerId}-panel`}
           className="
-            relative
+            flex flex-col overflow-visible
+            h-[calc(100dvh-1.5rem)] min-h-0 min-w-0
             my-3 ml-3 mr-0
-
-            flex h-[calc(100dvh-1.5rem)]
-            min-h-0 min-w-0 flex-col
-
-            overflow-visible
-
+            text-sidebar-foreground
+            bg-sidebar
             rounded-[var(--radius)]
-            bg-sidebar text-sidebar-foreground
-
-            is-drawer-close:w-14
-            is-drawer-open:w-[12.5rem]
-
             transition-[width]
-            duration-[var(--duration-slow)]
-            ease-[var(--ease-standard)]
-
-            motion-reduce:transition-none
+            relative is-drawer-close:w-14 is-drawer-open:w-[12.5rem] duration-[var(--duration-slow)] ease-[var(--ease-standard)] motion-reduce:transition-none
           "
         >
           {/* Sidebar logo / Home */}
@@ -196,24 +184,49 @@ export default function Drawer({
           />
 
           {/* Navigation */}
-          <SidebarNavigation
-            items={items}
-            onNavigate={closeMobileDrawer}
-          />
+          <SidebarNavigation items={items} onNavigate={closeMobileDrawer} />
 
           {/* Bottom controls */}
-          <div className="relative z-10 shrink-0 px-2 pb-3">
-            <div className="mx-1 mb-3 border-t border-sidebar-border" />
+          <div
+            className="
+              z-10
+              px-2 pb-3
+              relative shrink-0
+            "
+          >
+            <div
+              className="
+                mx-1 mb-3
+                border-t border-sidebar-border
+              "
+            />
 
-            <ul className="flex w-full min-w-0 flex-col gap-1 p-0">
-              <li className="relative block h-10 shrink-0 list-none">
+            <ul
+              className="
+                flex flex-col
+                w-full min-w-0
+                p-0
+                gap-1
+              "
+            >
+              <li
+                className="
+                  block
+                  h-10
+                  relative shrink-0 list-none
+                "
+              >
                 <ThemeToggle />
               </li>
 
-              <li className="relative block h-10 shrink-0 list-none">
-                <SoundToggle
-                  onChange={onSoundChange}
-                />
+              <li
+                className="
+                  block
+                  h-10
+                  relative shrink-0 list-none
+                "
+              >
+                <SoundToggle onChange={onSoundChange} />
               </li>
             </ul>
           </div>

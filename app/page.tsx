@@ -1,5 +1,11 @@
 import Drawer from "@/components/drawer";
-import HomeScene from "@/components/home-scene";
+import SectionLink from "@/components/ui/section-link";
+import HomeScene from "@/components/scenes/home-scene";
+import AboutScene from "@/components/scenes/about-scene";
+import ProjectsScene from "@/components/scenes/projects-scene";
+import ExperienceScene from "@/components/scenes/experience-scene";
+import StackScene from "@/components/scenes/stack-scene";
+import EducationScene from "@/components/scenes/education-scene";
 
 import { cookies } from "next/headers";
 
@@ -27,93 +33,78 @@ export default async function Home() {
       </section>
 
       {/* About */}
-      <section
-        id="about"
-        className="
-          min-h-screen
-          px-6 py-12
-          md:px-10
-        "
-      >
-        <h2
-          className="
-            text-3xl font-bold
-          "
-        >
-          About
-        </h2>
+      <section id="about" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
+        <div className="flex items-center justify-between gap-4">
+          <p className="font-display text-base text-muted-foreground">
+            -- About
+          </p>
+
+          <SectionLink href="/about" label="ALL ABOUT" />
+        </div>
+
+        <div className="mt-6">
+          <AboutScene />
+        </div>
       </section>
 
       {/* Projects */}
-      <section
-        id="projects"
-        className="
-          min-h-screen
-          px-6 py-12
-          md:px-10
-        "
-      >
-        <h2
-          className="
-            text-3xl font-bold
-          "
-        >
-          Projects
-        </h2>
+      <section id="projects" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
+        <div className="flex items-center justify-between gap-4">
+          <p className="font-display text-base text-muted-foreground">
+            -- Projects
+          </p>
+
+          <SectionLink href="/projects" label="ALL PROJECTS" />
+        </div>
+
+        <div className="mt-6">
+          <ProjectsScene />
+        </div>
       </section>
 
       {/* Experience */}
-      <section
-        id="experience"
-        className="
-          min-h-screen
-          px-6 py-12
-          md:px-10
-        "
-      >
-        <h2
-          className="
-            text-3xl font-bold
-          "
-        >
-          Experience
-        </h2>
+      <section id="experience" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
+        <div className="flex items-center justify-between gap-4">
+          <p className="font-display text-base text-muted-foreground">
+            -- Experience
+          </p>
+
+          <SectionLink href="/experience" label="ALL EXPERIENCE" />
+        </div>
+
+        <div className="mt-6">
+          <ExperienceScene />
+        </div>
       </section>
 
       {/* Stack */}
-      <section
-        id="stack"
-        className="
-          min-h-screen
-          px-6 py-12
-          md:px-10
-        "
-      >
-        <h2
-          className="
-            text-3xl font-bold
-          "
-        >
-          Tech Stack
-        </h2>
+      <section id="stack" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
+        <div className="flex items-center justify-between gap-4">
+          <p className="font-display text-base text-muted-foreground">
+            -- Stack
+          </p>
+
+          <SectionLink href="/stack" label="ALL STACK" />
+        </div>
+
+        <div className="mt-6">
+          <StackScene />
+        </div>
       </section>
 
       {/* Education */}
-      <section
-        id="education"
-        className="
-          min-h-screen
-          px-6 py-12
-          md:px-10
-        "
-      >
-        <h2
-          className="
-            text-3xl font-bold
-          "
-        >
-          Education
-        </h2>
+      <section id="education" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
+        <div className="flex items-center justify-between gap-4">
+          <p className="font-display text-base text-muted-foreground">
+            -- Education
+          </p>
+
+          <SectionLink href="/education" label="ALL EDUCATION" />
+        </div>
+
+        <div className="mt-6">
+          <EducationScene />
+        </div>
       </section>
 
       {/* Contact */}
@@ -121,17 +112,17 @@ export default async function Home() {
         id="contact"
         className="
           min-h-screen
-          px-6 py-12
+          px-6 pt-0 pb-12
           md:px-10
         "
       >
-        <h2
+        <p
           className="
-            text-3xl font-bold
+            text-1xl font-display text-muted-foreground
           "
         >
-          Contact
-        </h2>
+          -- Contact
+        </p>
       </section>
     </Drawer>
   );

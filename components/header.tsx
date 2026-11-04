@@ -1,6 +1,8 @@
 "use client";
 
 import {
+  useEffect,
+  useRef,
   useState,
   type ComponentPropsWithoutRef,
   type ReactNode,
@@ -35,18 +37,75 @@ export default function Header({
   ...props
 }: HeaderProps) {
   const { scrollY } = useScroll();
-  const reduceMotion = useReducedMotion();
-  const [hidden, setHidden] = useState(false);
+const reduceMotion = useReducedMotion();
+const [hidden, setHidden] = useState(false);
 
-  void title;
+// Navigation keeps the header hidden until manual scrolling resumes.
+const navigationScroll = useRef(false);
 
-  useMotionValueEvent(scrollY, "change", (current) => {
-    const previous = scrollY.getPrevious() ?? current;
+void title;
 
-    if (current === previous) return;
+useEffect(() => {
+  const startNavigation = () => {
+    navigationScroll.current = true;
+    setHidden(true);
+  };
 
-    setHidden(current > previous && current > 150);
+  const resumeManualScroll = () => {
+    navigationScroll.current = false;
+  };
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (
+      event.target instanceof HTMLElement &&
+      event.target.closest(
+        "input, textarea, select, [contenteditable]",
+      )
+    ) {
+      return;
+    }
+
+    if (
+      [
+        "ArrowUp",
+        "ArrowDown",
+        "PageUp",
+        "PageDown",
+        "Home",
+        "End",
+        " ",
+      ].includes(event.key)
+    ) {
+      resumeManualScroll();
+    }
+  };
+
+  window.addEventListener("portfolio:navigate", startNavigation);
+  window.addEventListener("wheel", resumeManualScroll, {
+    passive: true,
   });
+  window.addEventListener("touchmove", resumeManualScroll, {
+    passive: true,
+  });
+  window.addEventListener("keydown", handleKeyDown);
+
+  return () => {
+    window.removeEventListener("portfolio:navigate", startNavigation);
+    window.removeEventListener("wheel", resumeManualScroll);
+    window.removeEventListener("touchmove", resumeManualScroll);
+    window.removeEventListener("keydown", handleKeyDown);
+  };
+}, []);
+
+useMotionValueEvent(scrollY, "change", (current) => {
+  if (navigationScroll.current) return;
+
+  const previous = scrollY.getPrevious() ?? current;
+
+  if (current === previous) return;
+
+  setHidden(current > previous && current > 150);
+});
 
   return (
     <motion.div
