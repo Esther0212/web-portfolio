@@ -51,6 +51,11 @@ useEffect(() => {
     setHidden(true);
   };
 
+  const navigateHome = () => {
+  navigationScroll.current = true;
+  setHidden(false);
+};
+
   const resumeManualScroll = () => {
     navigationScroll.current = false;
   };
@@ -81,6 +86,7 @@ useEffect(() => {
   };
 
   window.addEventListener("portfolio:navigate", startNavigation);
+  window.addEventListener("portfolio:home", navigateHome);
   window.addEventListener("wheel", resumeManualScroll, {
     passive: true,
   });
@@ -91,6 +97,7 @@ useEffect(() => {
 
   return () => {
     window.removeEventListener("portfolio:navigate", startNavigation);
+    window.removeEventListener("portfolio:home", navigateHome);
     window.removeEventListener("wheel", resumeManualScroll);
     window.removeEventListener("touchmove", resumeManualScroll);
     window.removeEventListener("keydown", handleKeyDown);

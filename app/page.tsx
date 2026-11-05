@@ -41,7 +41,7 @@ export default async function Home() {
       </section>
 
       {/* About */}
-      <section id="about" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
+      <section id="about" className="px-6 py-12 md:px-10 md:py-20">
         <div className="flex items-center justify-between gap-4">
           <h2 className="font-display text-base font-normal text-muted-foreground">
             -- About
@@ -56,7 +56,7 @@ export default async function Home() {
       </section>
 
       {/* Projects */}
-      <section id="projects" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
+      <section id="projects" className="px-6 py-12 md:px-10 md:py-20">
         <div className="flex items-center justify-between gap-4">
           <h2 className="font-display text-base font-normal text-muted-foreground">
             -- Projects
@@ -71,7 +71,7 @@ export default async function Home() {
       </section>
 
       {/* Experience */}
-      <section id="experience" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
+      <section id="experience" className="px-6 py-12 md:px-10 md:py-20">
         <div className="flex items-center justify-between gap-4">
           <h2 className="font-display text-base font-normal text-muted-foreground">
             -- Experience
@@ -86,7 +86,7 @@ export default async function Home() {
       </section>
 
       {/* Stack */}
-      <section id="stack" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
+      <section id="stack" className="px-6 py-12 md:px-10 md:py-20">
         <div className="flex items-center justify-between gap-4">
           <h2 className="font-display text-base font-normal text-muted-foreground">
             -- Stack
@@ -101,7 +101,7 @@ export default async function Home() {
       </section>
 
       {/* Education */}
-      <section id="education" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
+      <section id="education" className="px-6 py-12 md:px-10 md:py-20">
         <div className="flex items-center justify-between gap-4">
           <h2 className="font-display text-base font-normal text-muted-foreground">
             -- Education

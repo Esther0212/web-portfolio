@@ -10,6 +10,7 @@ import {
 
 import MusicPlayer from "../music-player";
 import { homeSceneHitAreas } from "@/lib/home-scene-hit-areas";
+import SegmentedControl from "@/components/ui/segmented-control";
 
 type DesktopArrangement = "scattered" | "tidy";
 
@@ -354,6 +355,11 @@ export default function HomeScene() {
 
   const activeArrangement = isPhoneOrTablet ? "compact" : arrangement;
 
+  const introMutedStyle =
+    activeArrangement === "compact"
+      ? { color: "oklch(0.58 0.031 107.3)" }
+      : undefined;
+
   return (
     <div className="home-scene relative isolate w-full">
       {/*
@@ -434,6 +440,7 @@ export default function HomeScene() {
       >
         <div className="home-intro-content">
           <motion.p
+            style={introMutedStyle}
             whileHover={reduceMotion ? undefined : { scale: 1.1 }}
             className="
               home-intro-welcome
@@ -446,6 +453,7 @@ export default function HomeScene() {
           </motion.p>
 
           <motion.h1
+            style={introMutedStyle}
             whileHover={reduceMotion ? undefined : { scale: 1.1 }}
             className="
               home-intro-name
@@ -456,8 +464,8 @@ export default function HomeScene() {
               sm:text-5xl
             "
           >
-            <span className="home-intro-line">Esther Beuthel</span>{" "}
-            <span className="home-intro-line">Eblacas</span>
+            <span className="home-intro-line text-primary">Esther Beuthel</span>{" "}
+            <span className="home-intro-line text-primary">Eblacas</span>
           </motion.h1>
 
           <motion.p
@@ -479,37 +487,18 @@ export default function HomeScene() {
       </div>
 
       {/* Desktop controls */}
-      <div
-        role="group"
-        aria-label="Picture arrangement"
-        className={`
-          ${isPhoneOrTablet ? "hidden" : "flex"}
-          absolute bottom-6 left-1/2 z-40
-          -translate-x-1/2 gap-2
-          rounded-full border border-border
-          bg-background/90 p-2
-        `}
-      >
-        {(["scattered", "tidy"] as const).map((option) => (
-          <button
-            key={option}
-            type="button"
-            aria-pressed={arrangement === option}
-            onClick={() => setArrangement(option)}
-            className={`
-              rounded-full px-4 py-2
-              text-sm capitalize transition-colors
-              ${
-                arrangement === option
-                  ? "bg-foreground text-background"
-                  : "text-foreground hover:bg-muted"
-              }
-            `}
-          >
-            {option}
-          </button>
-        ))}
-      </div>
+      {!isPhoneOrTablet && (
+        <SegmentedControl
+          label="Picture arrangement"
+          options={["scattered", "tidy"] as const}
+          value={arrangement}
+          onChange={setArrangement}
+          className="
+      absolute bottom-6 left-1/2 z-40
+      -translate-x-1/2
+    "
+        />
+      )}
     </div>
   );
 }

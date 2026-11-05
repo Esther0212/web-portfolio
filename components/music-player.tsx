@@ -5,6 +5,7 @@ import { useCallback, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 import MusicControlButton from "./ui/music-control-button";
+import Tooltip from "./ui/tooltip";
 
 import {
   FALLBACK_VINYL_GIF,
@@ -294,32 +295,40 @@ export default function MusicPlayer() {
       </div>
 
       {/* Song details */}
-      <div
-        className="
-          min-w-0
-          mt-1
-          text-center
-        "
-      >
-        <h3
-          title={track.title}
-          className="
-            !m-0 !truncate !text-[11px] !font-semibold !leading-[1.4] !tracking-tight
-          "
+      <div className="min-w-0 mt-1 text-center">
+        <Tooltip
+          content={track.title}
+          position="right"
+          collapsedOnly={false}
+          className="hover:z-50 focus-within:z-50"
+          tabIndex={0}
         >
-          {track.title}
-        </h3>
+          <h3
+            className="
+        !m-0 !truncate !text-[11px]
+        !font-semibold !leading-[1.4] !tracking-tight
+      "
+          >
+            {track.title}
+          </h3>
+        </Tooltip>
 
-        <p
-          title={track.artist}
-          className="
-            mt-0.5
-            text-[9px] text-muted-foreground
-            truncate !leading-[1.4]
-          "
+        <Tooltip
+          content={track.artist}
+          position="right"
+          collapsedOnly={false}
+          className="mt-0.5 hover:z-50 focus-within:z-50"
+          tabIndex={0}
         >
-          {track.artist}
-        </p>
+          <p
+            className="
+        m-0 text-[9px] text-muted-foreground
+        truncate !leading-[1.4]
+      "
+          >
+            {track.artist}
+          </p>
+        </Tooltip>
       </div>
 
       {/* Custom solid progress bar */}
