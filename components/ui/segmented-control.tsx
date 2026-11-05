@@ -41,7 +41,7 @@ export default function SegmentedControl<T extends string>({
             capitalize duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring
             ${
               value === option
-                ? "border-primary bg-chart-1/25 text-foreground"
+                ? "border-primary bg-chart-1/40 text-foreground"
                 : "border-transparent text-foreground hover:bg-muted"
             }
           `}

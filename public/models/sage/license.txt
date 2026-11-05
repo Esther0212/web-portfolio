@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sage | Valorant
+* source:	https://sketchfab.com/3d-models/sage-valorant-17612cddefbc4f92acddc5fe76625bc2
+* author:	ILilMitch (https://sketchfab.com/ILilMitch)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sage | Valorant" (https://sketchfab.com/3d-models/sage-valorant-17612cddefbc4f92acddc5fe76625bc2) by ILilMitch (https://sketchfab.com/ILilMitch) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

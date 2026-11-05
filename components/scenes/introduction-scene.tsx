@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
   GithubLogoIcon,
   LinkedinLogoIcon,
@@ -8,14 +7,9 @@ import {
 import { getButtonStyles } from "@/components/ui/button";
 import ResumePreview from "@/components/ui/resume-preview";
 import Tooltip from "@/components/ui/tooltip";
+import SagePortrait from "@/components/3d/sage-portrait";
 
-type IntroductionSceneProps = {
-  portraitSrc?: string;
-};
-
-export default function IntroductionScene({
-  portraitSrc,
-}: IntroductionSceneProps) {
+export default function IntroductionScene() {
   const buttonClass = `
     inline-flex min-h-11 items-center justify-center gap-2
     rounded-lg px-5 py-3
@@ -154,23 +148,12 @@ export default function IntroductionScene({
         </div>
       </div>
 
-      {/* Portrait */}
-      <div className="mx-auto aspect-square w-full max-w-80 overflow-hidden rounded-2xl border border-border bg-muted">
-        {portraitSrc ? (
-          <Image
-            src={portraitSrc}
-            alt="Portrait of Esther Beuthel Eblacas"
-            width={640}
-            height={640}
-            sizes="(min-width: 640px) 320px, 100vw"
-            className="h-full w-full object-cover"
-          />
-        ) : (
-          <div className="flex h-full items-center justify-center text-muted-foreground">
-            Portrait goes here
-          </div>
-        )}
-      </div>
+      
+{/* Interactive Sage 3D Model */}
+<div className="relative mx-auto h-[450px] w-full max-w-[500px] lg:h-[550px]">
+  <SagePortrait />
+</div>
+
     </div>
   );
 }
