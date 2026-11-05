@@ -8,6 +8,7 @@ import {
 } from "react";
 
 import {
+  HandWavingIcon,
   UserIcon,
   LaptopIcon,
   BriefcaseIcon,
@@ -40,6 +41,11 @@ export type DrawerProps = ComponentPropsWithoutRef<"div"> & {
 };
 
 const defaultItems: DrawerItem[] = [
+  {
+    label: "Introduction",
+    href: "/#introduction",
+    icon: HandWavingIcon,
+  },
   { label: "About", href: "/#about", icon: UserIcon },
   { label: "Projects", href: "/#projects", icon: LaptopIcon },
   {

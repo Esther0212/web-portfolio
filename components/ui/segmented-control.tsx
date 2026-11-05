@@ -20,11 +20,11 @@ export default function SegmentedControl<T extends string>({
       role="group"
       aria-label={label}
       className={`
-        inline-flex flex-wrap gap-2
-        rounded-[var(--radius)]
-        border border-border
-        bg-background/90 p-2
-        ${className}
+        inline-flex flex-wrap
+        p-2
+        bg-background/90
+        rounded-[var(--radius)] border border-border
+        gap-2 ${className}
       `}
     >
       {options.map((option) => (
@@ -34,15 +34,15 @@ export default function SegmentedControl<T extends string>({
           aria-pressed={value === option}
           onClick={() => onChange(option)}
           className={`
-            rounded-md px-4 py-2
-            text-sm capitalize transition-colors
-            focus-visible:outline-2
-            focus-visible:outline-offset-2
-            focus-visible:outline-ring
+            px-4 py-2
+            text-sm
+            rounded-md border
+            transition-colors
+            capitalize duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring
             ${
               value === option
-                ? "bg-primary text-primary-foreground"
-                : "text-foreground hover:bg-muted"
+                ? "border-primary bg-chart-1/25 text-foreground"
+                : "border-transparent text-foreground hover:bg-muted"
             }
           `}
         >

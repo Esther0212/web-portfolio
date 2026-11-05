@@ -8,6 +8,7 @@ import ProjectsScene from "@/components/scenes/projects-scene";
 import ExperienceScene from "@/components/scenes/experience-scene";
 import StackScene from "@/components/scenes/stack-scene";
 import EducationScene from "@/components/scenes/education-scene";
+import IntroductionScene from "@/components/scenes/introduction-scene";
 
 import { cookies } from "next/headers";
 
@@ -38,6 +39,15 @@ export default async function Home() {
       {/* Home */}
       <section id="home" className="pb-64">
         <HomeScene />
+      </section>
+
+      {/* Introduction */}
+      <section
+        id="introduction"
+        aria-labelledby="introduction-heading"
+        className="px-6 py-12 md:px-10 md:py-20"
+      >
+        <IntroductionScene />
       </section>
 
       {/* About */}
