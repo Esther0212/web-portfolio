@@ -21,7 +21,7 @@ export default async function ProjectsPage() {
       }
     >
       <section className="min-h-screen px-6 py-8 md:px-10">
-        <h3>Projects</h3>
+        <h1>Projects</h1>
 
         <p className="mt-6">
           Your full Projects content goes here.

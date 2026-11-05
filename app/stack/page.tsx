@@ -21,7 +21,7 @@ export default async function StackPage() {
       }
     >
       <section className="min-h-screen px-6 py-8 md:px-10">
-        <h3>Stack</h3>
+        <h1>Stack</h1>
 
         <p className="mt-6">
           Your full Stack content goes here.

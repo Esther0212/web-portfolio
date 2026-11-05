@@ -21,7 +21,7 @@ export default async function ExperiencePage() {
       }
     >
       <section className="min-h-screen px-6 py-8 md:px-10">
-        <h3>Experience</h3>
+        <h1>Experience</h1>
 
         <p className="mt-6">
           Your full Experience content goes here.

@@ -21,7 +21,7 @@ export default async function EducationPage() {
       }
     >
       <section className="min-h-screen px-6 py-8 md:px-10">
-        <h3>Education</h3>
+        <h1>Education</h1>
 
         <p className="mt-6">
           Your full Education content goes here.

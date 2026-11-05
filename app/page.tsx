@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import Drawer from "@/components/drawer";
 import SectionLink from "@/components/ui/section-link";
 import HomeScene from "@/components/scenes/home-scene";
@@ -8,6 +10,12 @@ import StackScene from "@/components/scenes/stack-scene";
 import EducationScene from "@/components/scenes/education-scene";
 
 import { cookies } from "next/headers";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://esthereblacas.vercel.app/",
+  },
+};
 
 export const instant = false;
 
@@ -35,9 +43,9 @@ export default async function Home() {
       {/* About */}
       <section id="about" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
         <div className="flex items-center justify-between gap-4">
-          <p className="font-display text-base text-muted-foreground">
+          <h2 className="font-display text-base font-normal text-muted-foreground">
             -- About
-          </p>
+          </h2>
 
           <SectionLink href="/about" label="ALL ABOUT" />
         </div>
@@ -50,9 +58,9 @@ export default async function Home() {
       {/* Projects */}
       <section id="projects" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
         <div className="flex items-center justify-between gap-4">
-          <p className="font-display text-base text-muted-foreground">
+          <h2 className="font-display text-base font-normal text-muted-foreground">
             -- Projects
-          </p>
+          </h2>
 
           <SectionLink href="/projects" label="ALL PROJECTS" />
         </div>
@@ -65,9 +73,9 @@ export default async function Home() {
       {/* Experience */}
       <section id="experience" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
         <div className="flex items-center justify-between gap-4">
-          <p className="font-display text-base text-muted-foreground">
+          <h2 className="font-display text-base font-normal text-muted-foreground">
             -- Experience
-          </p>
+          </h2>
 
           <SectionLink href="/experience" label="ALL EXPERIENCE" />
         </div>
@@ -80,9 +88,9 @@ export default async function Home() {
       {/* Stack */}
       <section id="stack" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
         <div className="flex items-center justify-between gap-4">
-          <p className="font-display text-base text-muted-foreground">
+          <h2 className="font-display text-base font-normal text-muted-foreground">
             -- Stack
-          </p>
+          </h2>
 
           <SectionLink href="/stack" label="ALL STACK" />
         </div>
@@ -95,9 +103,9 @@ export default async function Home() {
       {/* Education */}
       <section id="education" className="min-h-screen px-6 pt-0 pb-12 md:px-10">
         <div className="flex items-center justify-between gap-4">
-          <p className="font-display text-base text-muted-foreground">
+          <h2 className="font-display text-base font-normal text-muted-foreground">
             -- Education
-          </p>
+          </h2>
 
           <SectionLink href="/education" label="ALL EDUCATION" />
         </div>
@@ -116,13 +124,9 @@ export default async function Home() {
           md:px-10
         "
       >
-        <p
-          className="
-            text-1xl font-display text-muted-foreground
-          "
-        >
+        <h2 className="font-display text-base font-normal text-muted-foreground">
           -- Contact
-        </p>
+        </h2>
       </section>
     </Drawer>
   );

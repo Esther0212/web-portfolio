@@ -25,14 +25,20 @@ const oxanium = Oxanium({
 });
 
 export const metadata: Metadata = {
-  title: "Esther Eblacas | Portfolio",
-  description: "Personal software developer portfolio",
+  metadataBase: new URL("https://esthereblacas.vercel.app"),
+  title: {
+    default: "Esther Beuthel Eblacas | Software Developer",
+    template: "%s | Esther Beuthel Eblacas",
+  },
+  description:
+    "I'm Esther Beuthel Eblacas. I build thoughtful web experiences through design and code. Explore my projects, skills, and experience.",
   openGraph: {
-    title: 'Esther Eblacas | Portfolio',
-    description: 'Explore my projects and technical expertise.',
-    url: 'https://vercel.app',
-    siteName: 'Esther Eblacas Portfolio',
-    type: 'website',
+    title: "Esther Beuthel Eblacas | Software Developer",
+    description:
+      "Explore my projects, skills, and experience building thoughtful web experiences through design and code.",
+    siteName: "Esther Beuthel Eblacas",
+    type: "website",
+    locale: "en_US",
   },
 };
 

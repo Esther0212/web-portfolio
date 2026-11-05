@@ -20,6 +20,7 @@ export default function SectionLink({
         inline-flex shrink-0 items-center gap-2
         bg-transparent
         font-display text-base text-muted-foreground
+        hover:text-secondary-foreground transition-colors
         focus-visible:outline-2
         focus-visible:outline-offset-4
         focus-visible:outline-ring
