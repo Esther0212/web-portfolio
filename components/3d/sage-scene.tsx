@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Canvas } from "@react-three/fiber";
@@ -43,18 +42,15 @@ export default function SageScene({
       >
         <ambientLight intensity={2} />
 
-        <directionalLight
-          position={[3, 5, 5]}
-          intensity={3}
-        />
+        <directionalLight position={[3, 5, 5]} intensity={3} />
 
         <Suspense fallback={null}>
-  <SageModel
-    mouse={mouse}
-    onHoverChange={onHoverChange}
-    onModelClick={onModelClick}
-  />
-</Suspense>
+          <SageModel
+            mouse={mouse}
+            onHoverChange={onHoverChange}
+            onModelClick={onModelClick}
+          />
+        </Suspense>
       </Canvas>
     </div>
   );

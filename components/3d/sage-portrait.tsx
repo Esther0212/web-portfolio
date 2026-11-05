@@ -13,6 +13,7 @@ export default function SagePortrait() {
   const [hovered, setHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const [bubbleClicked, setBubbleClicked] = useState(false);
 
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const bubbleHoveredRef = useRef(false);
@@ -49,12 +50,16 @@ export default function SagePortrait() {
 
     timeoutRef.current = setTimeout(() => {
       setClicked(false);
-      setDismissed(true);
+
+      if (!bubbleHoveredRef.current) {
+        setDismissed(true);
+      }
+
       timeoutRef.current = null;
     }, 3000);
   };
 
-  const showBubble = clicked || (hovered && !dismissed);
+  const showBubble = clicked || bubbleClicked || (hovered && !dismissed);
 
   const cancelHoverLeave = () => {
     if (hoverLeaveTimeoutRef.current !== null) {
@@ -71,8 +76,15 @@ export default function SagePortrait() {
     setDismissed(false);
   };
 
+  const handleBubbleClick = () => {
+    clearTimer();
+    setBubbleClicked(true);
+    setDismissed(false);
+  };
+
   const handleBubbleLeave = () => {
     bubbleHoveredRef.current = false;
+    setBubbleClicked(false);
 
     if (!clicked) {
       setHovered(false);
@@ -156,10 +168,11 @@ export default function SagePortrait() {
       {/* Chat bubble remains positioned relative to portrait */}
       <ChatBubble
         visible={showBubble}
-        finishImmediately={clicked}
+        finishImmediately={clicked || bubbleClicked}
         onTypingComplete={handleTypingComplete}
         onMouseEnter={handleBubbleEnter}
         onMouseLeave={handleBubbleLeave}
+        onClick={handleBubbleClick}
         message={
           "Hey! I'm Sage. ✨\n\n" +
           "My 3D model was created by ILilMitch " +

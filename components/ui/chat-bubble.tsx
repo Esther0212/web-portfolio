@@ -11,6 +11,7 @@ type ChatBubbleProps = {
   finishImmediately?: boolean;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  onClick?: () => void;
 };
 
 const links: Record<string, string> = {
@@ -57,6 +58,7 @@ export default function ChatBubble({
   finishImmediately = false,
   onMouseEnter,
   onMouseLeave,
+  onClick,
 }: ChatBubbleProps) {
   const [displayedText, setDisplayedText] = useState("");
   const reducedMotion = useReducedMotion();
@@ -120,6 +122,7 @@ export default function ChatBubble({
         <motion.div
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
+          onClick={onClick}
           initial={{
             opacity: 0,
             scale: 0.9,
