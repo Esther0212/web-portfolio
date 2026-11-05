@@ -25,8 +25,15 @@ const oxanium = Oxanium({
 });
 
 export const metadata: Metadata = {
-  title: "Esther Beuthel Eblacas | Portfolio",
+  title: "Esther Eblacas | Portfolio",
   description: "Personal software developer portfolio",
+  openGraph: {
+    title: 'Esther Eblacas | Portfolio',
+    description: 'Explore my projects and technical expertise.',
+    url: 'https://vercel.app',
+    siteName: 'Esther Eblacas Portfolio',
+    type: 'website',
+  },
 };
 
 const themeScript = `
