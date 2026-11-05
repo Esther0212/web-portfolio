@@ -54,6 +54,8 @@ export default function SageModel({
   const neutralHeadPosition = useRef(new THREE.Vector3());
   const neutralHeadReady = useRef(false);
 
+  const idleGroup = useRef<THREE.Group>(null);
+
   useEffect(() => {
     const headBone = model.getObjectByName("Head_10");
     const neckBone = model.getObjectByName("Neck_8");
@@ -74,7 +76,30 @@ export default function SageModel({
     }
   }, [model]);
 
-  useFrame(({ camera, gl }, delta) => {
+  useFrame((state, delta) => {
+    const { camera, gl, clock } = state;
+
+    // ========================================
+    // IDLE ANIMATION
+    // Based on the retro computer reference
+    // ========================================
+
+    const group = idleGroup.current;
+
+    if (group) {
+      const t = clock.elapsedTime;
+
+      // Gentle horizontal rotation
+      group.rotation.y = Math.sin(t * 0.6) * 0.3;
+
+      // Gentle vertical tilt
+      group.rotation.x = Math.sin(t * 0.46) * 0.06;
+    }
+
+    // ========================================
+    // EXISTING HEAD TRACKING
+    // ========================================
+
     if (!head.current || !neck.current) return;
 
     const rect = gl.domElement.getBoundingClientRect();
@@ -112,7 +137,6 @@ export default function SageModel({
     // Horizontal rotation.
     const yaw = x * 0.55;
 
-    // Asymmetric vertical movement:
     // Looking down is stronger than looking up.
     const pitch = y > 0 ? y * 0.55 : y * 0.2;
 
@@ -138,29 +162,31 @@ export default function SageModel({
     // Head receives most of the movement.
     rotateBone(head.current, originalHead.current, 0.8);
 
-    // Neck follows slightly for natural movement.
+    // Neck follows slightly.
     rotateBone(neck.current, originalNeck.current, 0.2);
   });
 
   return (
-    <primitive
-      object={model}
-      dispose={null}
-      onPointerOver={(event: ThreeEvent<PointerEvent>) => {
-        event.stopPropagation();
-        onHoverChange?.(true);
-        document.body.style.cursor = "pointer";
-      }}
-      onPointerOut={(event: ThreeEvent<PointerEvent>) => {
-        event.stopPropagation();
-        onHoverChange?.(false);
-        document.body.style.cursor = "";
-      }}
-      onClick={(event: ThreeEvent<MouseEvent>) => {
-        event.stopPropagation();
-        onModelClick?.();
-      }}
-    />
+    <group ref={idleGroup}>
+      <primitive
+        object={model}
+        dispose={null}
+        onPointerOver={(event: ThreeEvent<PointerEvent>) => {
+          event.stopPropagation();
+          onHoverChange?.(true);
+          document.body.style.cursor = "pointer";
+        }}
+        onPointerOut={(event: ThreeEvent<PointerEvent>) => {
+          event.stopPropagation();
+          onHoverChange?.(false);
+          document.body.style.cursor = "";
+        }}
+        onClick={(event: ThreeEvent<MouseEvent>) => {
+          event.stopPropagation();
+          onModelClick?.();
+        }}
+      />
+    </group>
   );
 }
 
