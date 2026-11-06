@@ -51,6 +51,23 @@ export default function ResumePreview({ href }: ResumePreviewProps) {
         collapsedOnly={false}
         className="!w-auto shrink-0"
       >
+        {/* Mobile: open the PDF directly in another tab */}
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View résumé in a new tab"
+          className={`
+    ${getButtonStyles("primary")}
+    inline-flex size-[calc(1.25rem+1rem+2px)]!
+    shrink-0 items-center justify-center p-0!
+    md:hidden
+  `}
+        >
+          <EyeIcon size={20} aria-hidden="true" />
+        </a>
+
+        {/* Desktop: open the existing iframe preview */}
         <button
           type="button"
           aria-label="Preview résumé"
@@ -60,10 +77,11 @@ export default function ResumePreview({ href }: ResumePreviewProps) {
             setIsOpen(true);
           }}
           className={`
-      ${getButtonStyles("primary")}
-      inline-flex size-[calc(1.25rem+1rem+2px)]!
-      shrink-0 items-center justify-center p-0!
-    `}
+    ${getButtonStyles("primary")}
+    hidden md:inline-flex
+    size-[calc(1.25rem+1rem+2px)]!
+    shrink-0 items-center justify-center p-0!
+  `}
         >
           <EyeIcon size={20} aria-hidden="true" />
         </button>

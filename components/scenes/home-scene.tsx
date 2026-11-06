@@ -23,8 +23,7 @@ type SceneObject = {
   compact: TargetAndTransition;
 };
 
-const deviceQuery =
-  "(max-width: 1023px), (max-width: 1366px) and (pointer: coarse)";
+const deviceQuery = "(max-width: 1023px)";
 
 function useMediaQuery(query: string) {
   return useSyncExternalStore(
@@ -38,7 +37,7 @@ function useMediaQuery(query: string) {
       };
     },
     () => window.matchMedia(query).matches,
-    () => false,
+    () => true,
   );
 }
 
@@ -185,12 +184,12 @@ const objects: SceneObject[] = [
       rotate: 0,
     },
     compact: {
-      width: "450px",
+      width: "400px",
       left: "50%",
       top: "50%",
       x: "-50%",
       y: "-50%",
-      rotate: 0,
+      rotate: 10,
     },
   },
   {
@@ -334,7 +333,7 @@ function SceneImage({
           alt=""
           fill
           sizes={width}
-          loading={object.file === "notebook.png" ? "eager" : "lazy"}
+          loading="eager"
           draggable={false}
           className="
             pointer-events-none select-none
@@ -361,7 +360,10 @@ export default function HomeScene() {
       : undefined;
 
   return (
-    <div className="home-scene relative isolate w-full">
+    <div
+      data-arrangement={activeArrangement}
+      className="home-scene relative isolate w-full"
+    >
       {/*
        * Desktop: this frame fills Home.
        *
@@ -387,7 +389,7 @@ export default function HomeScene() {
         {/* Decorative images */}
         {objects.map((object) => (
           <SceneImage
-            key={object.file}
+            key={`${isPhoneOrTablet ? "compact" : "desktop"}-${object.file}`}
             object={object}
             position={object[activeArrangement]}
             reduceMotion={reduceMotion}
@@ -401,6 +403,7 @@ export default function HomeScene() {
 
         {/* Music player also belongs to the shared frame */}
         <motion.div
+          key={isPhoneOrTablet ? "music-compact" : "music-desktop"}
           initial={false}
           animate={{
             x: 0,
@@ -464,8 +467,9 @@ export default function HomeScene() {
               sm:text-5xl
             "
           >
-            <span className="home-intro-line text-primary">Esther Beuthel</span>{" "}
-            <span className="home-intro-line text-primary">Eblacas</span>
+            <span className="home-intro-line text-foreground">
+              Esther Eblacas
+            </span>
           </motion.h1>
 
           <motion.p

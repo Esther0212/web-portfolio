@@ -22,7 +22,7 @@ const variantStyles: Record<ButtonVariant, string> = {
   secondary: `
     border-primary
     bg-chart-1/15 text-foreground
-    hover:bg-chart-1/40
+    hover:bg-chart-1/60
     dark:hover:bg-chart-1/25
   `,
 };

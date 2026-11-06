@@ -896,48 +896,53 @@
   margin-inline: auto;
 }
 
-/* Fixed text sizes across all compact screens. */
-@media (max-width: 1023px), (max-width: 1366px) and (pointer: coarse) {
-  .home-intro-welcome {
-    font-size: var(--text-small-size);
-    line-height: var(--leading-body);
-    white-space: nowrap;
-  }
-
-  .home-intro-name {
-    font-size: 2.5rem;
-    line-height: var(--leading-heading);
-  }
-
-  .home-intro-description {
-    max-width: none;
-    font-size: var(--text-small-size);
-    line-height: var(--leading-body);
-  }
-
-  .home-intro-line {
-    display: block;
-    white-space: nowrap;
-  }
-}
-
-/* Center within Home's existing main-area height. */
+/* Center the introduction. */
 .home-intro {
   padding-block: 0;
 }
 
-@media (max-width: 1023px), (max-width: 1366px) and (pointer: coarse) {
-  .home-intro {
-    position: absolute;
-    left: 50%;
-    top: 50%;
+/* Keep compact text inside the notebook's width. */
+.home-scene[data-arrangement="compact"] .home-intro {
+  position: absolute;
+  left: 50%;
+  top: 50%;
 
-    width: 100%;
-    height: auto;
-    padding-block: 0;
+  box-sizing: border-box;
+  width: 500px;
+  max-width: 100%;
+  height: auto;
+  padding: 0 24px;
 
-    transform: translate(-50%, -50%);
-  }
+  transform: translate(-50%, -50%);
+}
+
+.home-scene[data-arrangement="compact"] .home-intro-content {
+  width: 100%;
+  min-width: 0;
+  container-type: inline-size;
+}
+
+.home-scene[data-arrangement="compact"] .home-intro-welcome {
+  font-size: clamp(12px, 4cqi, var(--text-small-size));
+  line-height: var(--leading-body);
+  white-space: nowrap;
+}
+
+.home-scene[data-arrangement="compact"] .home-intro-name {
+  font-size: clamp(24px, 9cqi, 40px);
+  line-height: var(--leading-heading);
+}
+
+.home-scene[data-arrangement="compact"] .home-intro-description {
+  max-width: none;
+  font-size: clamp(12px, 4cqi, var(--text-small-size));
+  line-height: var(--leading-body);
+}
+
+.home-scene[data-arrangement="compact"] .home-intro-line {
+  display: block;
+  white-space: nowrap;
+  color: #000;
 }
 
 /* Keep the music player light in either site theme. */
@@ -978,5 +983,12 @@
   /* Code: Oxanium */
   code, pre, kbd, samp {
     @apply font-mono;
+  }
+}
+
+/* On desktop, wait until the desktop arrangement is ready. */
+@media (min-width: 1024px) {
+  .home-scene[data-arrangement="compact"] {
+    visibility: hidden;
   }
 }

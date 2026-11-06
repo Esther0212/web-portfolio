@@ -12,6 +12,19 @@ import IntroductionScene from "@/components/scenes/introduction-scene";
 
 import { cookies } from "next/headers";
 
+const sageAssets = [
+  "/models/sage/scene.gltf",
+  "/models/sage/scene.bin",
+  "/models/sage/textures/CS_Thorne_S0_Hair_MI_baseColor.png",
+  "/models/sage/textures/CS_Thorne_S0_Hair_MI_normal.png",
+  "/models/sage/textures/CS_Thorne_S0_MI_baseColor.png",
+  "/models/sage/textures/CS_Thorne_S0_MI_normal.png",
+  "/models/sage/textures/TP_Core_Eye_MI_Sage_baseColor.png",
+  "/models/sage/textures/TP_Core_Eye_MI_Sage_specularf0.png",
+];
+{
+  /* Home */
+}
 export const metadata: Metadata = {
   alternates: {
     canonical: "https://esthereblacas.vercel.app/",
@@ -36,6 +49,16 @@ export default async function Home() {
         </>
       }
     >
+      {sageAssets.map((href) => (
+        <link
+          key={href}
+          rel="preload"
+          href={href}
+          as={href.endsWith(".png") ? "image" : "fetch"}
+          crossOrigin="anonymous"
+        />
+      ))}
+
       {/* Home */}
       <section id="home" className="pb-64">
         <HomeScene />
