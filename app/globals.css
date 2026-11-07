@@ -992,3 +992,58 @@
     visibility: hidden;
   }
 }
+
+/* About layout — typography and colors use the existing global styles. */
+
+.about-content {
+  width: 100%;
+}
+
+.about-layout {
+  display: grid;
+  align-items: start;
+  gap: var(--content-spacing);
+  width: 100%;
+}
+
+.about-profile {
+  width: 100%;
+  max-width: 20rem;
+}
+
+.about-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.about-detail-section {
+  margin-top: var(--section-spacing);
+}
+
+.about-hobbies-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  gap: var(--space-paragraph);
+}
+
+@media (min-width: 640px) {
+  .about-hobbies-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-layout {
+    grid-template-columns: 20rem minmax(0, 1fr);
+    column-gap: 10rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .about-hobbies-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

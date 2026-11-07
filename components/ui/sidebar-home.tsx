@@ -92,7 +92,7 @@ export default function SidebarHome({
               {brand ?? (
                 <>
                   <Image
-                    src="/images/light-logo.png"
+                    src="/logos/light-logo.png"
                     alt=""
                     width={20}
                     height={20}
@@ -103,7 +103,7 @@ export default function SidebarHome({
                   />
 
                   <Image
-                    src="/images/dark-logo.png"
+                    src="/logos/dark-logo.png"
                     alt=""
                     width={20}
                     height={20}
