@@ -33,9 +33,7 @@ export default function Card({
           </div>
         )}
 
-        <h3 className="text-lg font-semibold tracking-normal">
-          {title}
-        </h3>
+        <h3 className="text-lg font-semibold tracking-normal">{title}</h3>
 
         {children}
       </div>
