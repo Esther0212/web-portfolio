@@ -10,16 +10,6 @@ import Tooltip from "@/components/ui/tooltip";
 import SagePortrait from "@/components/3d/sage-portrait";
 
 export default function IntroductionScene() {
-  const buttonClass = `
-    inline-flex min-h-11 items-center justify-center gap-2
-    rounded-lg px-5 py-3
-    font-display text-sm
-    transition-colors
-    focus-visible:outline-2
-    focus-visible:outline-offset-4
-    focus-visible:outline-ring
-  `;
-
   const socialClass = `
     inline-flex size-11 items-center justify-center
     rounded-lg text-muted-foreground

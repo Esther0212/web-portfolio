@@ -1,7 +1,5 @@
 import { contact } from "@/data/contact";
 
-export const runtime = "nodejs";
-
 export async function POST(request: Request) {
   const origin = request.headers.get("origin");
 

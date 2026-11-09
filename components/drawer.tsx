@@ -105,6 +105,7 @@ export default function Drawer({
 
   return (
     <div
+      {...props}
       id="top"
       className={`
         drawer lg:drawer-open

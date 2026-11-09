@@ -60,36 +60,56 @@ export default function ChatBubble({
   onMouseLeave,
   onClick,
 }: ChatBubbleProps) {
-  const [displayedText, setDisplayedText] = useState("");
-  const reducedMotion = useReducedMotion();
+    const reducedMotion = useReducedMotion();
+  const instant = Boolean(reducedMotion || finishImmediately);
+
+  // Identify the current typing session.
+  const typingKey = JSON.stringify([visible, message, instant]);
+
+  const [typing, setTyping] = useState({
+    key: typingKey,
+    text: "",
+  });
 
   const onTypingCompleteRef = useRef(onTypingComplete);
+
+  // Reset only when the message, visibility, or typing mode changes.
+  if (typing.key !== typingKey) {
+    setTyping({
+      key: typingKey,
+      text: "",
+    });
+  }
+
+  const displayedText = instant
+    ? message
+    : typing.key === typingKey
+      ? typing.text
+      : "";
 
   useEffect(() => {
     onTypingCompleteRef.current = onTypingComplete;
   }, [onTypingComplete]);
 
   useEffect(() => {
-    if (!visible) {
-      setDisplayedText("");
-      return;
-    }
+    if (!visible) return;
 
-    if (reducedMotion || finishImmediately) {
-      setDisplayedText(message);
+    if (instant || message.length === 0) {
       onTypingCompleteRef.current?.();
       return;
     }
 
-    setDisplayedText("");
-
     let index = 0;
     let timeout: ReturnType<typeof setTimeout>;
 
-    const type = () => {
-      index++;
+    function type() {
+      index += 1;
 
-      setDisplayedText(message.slice(0, index));
+      // State updates happen in the timer callback.
+      setTyping({
+        key: typingKey,
+        text: message.slice(0, index),
+      });
 
       if (index >= message.length) {
         onTypingCompleteRef.current?.();
@@ -109,12 +129,12 @@ export default function ChatBubble({
       }
 
       timeout = setTimeout(type, delay);
-    };
+    }
 
     timeout = setTimeout(type, 250);
 
     return () => clearTimeout(timeout);
-  }, [visible, message, reducedMotion, finishImmediately]);
+  }, [visible, message, instant, typingKey]);
 
   return (
     <AnimatePresence>
