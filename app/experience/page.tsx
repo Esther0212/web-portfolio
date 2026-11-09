@@ -1,6 +1,7 @@
-import Drawer from "@/components/drawer";
-import Link from "next/link";
 import { cookies } from "next/headers";
+
+import Drawer from "@/components/drawer";
+import ExperienceScene from "@/components/scenes/experience-scene";
 
 export const instant = false;
 
@@ -20,19 +21,20 @@ export default async function ExperiencePage() {
         </>
       }
     >
-      <section className="min-h-screen px-6 py-8 md:px-10">
-        <h1>Experience</h1>
-
-        <p className="mt-6">
-          Your full Experience content goes here.
-        </p>
-
-        <Link
-        href="/#experience"
-        className="font-display text-muted-foreground"
+      <section
+        aria-labelledby="experience-heading"
+        className="min-h-screen px-6 py-12 md:px-10 md:py-20"
       >
-        ← BACK TO HOME
-      </Link>
+        <div className="mb-10 flex flex-wrap items-center justify-between gap-4 md:mb-14">
+          <h1
+            id="experience-heading"
+            className="font-heading text-4xl font-bold tracking-tight sm:text-5xl"
+          >
+            Experience
+          </h1>
+        </div>
+
+        <ExperienceScene full />
       </section>
     </Drawer>
   );

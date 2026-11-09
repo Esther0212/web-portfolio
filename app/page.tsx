@@ -9,6 +9,7 @@ import ExperienceScene from "@/components/scenes/experience-scene";
 import StackScene from "@/components/scenes/stack-scene";
 import EducationScene from "@/components/scenes/education-scene";
 import IntroductionScene from "@/components/scenes/introduction-scene";
+import ContactScene from "@/components/scenes/contact-scene";
 
 import { cookies } from "next/headers";
 
@@ -98,7 +99,7 @@ export default async function Home() {
           <SectionLink href="/projects" label="ALL PROJECTS" />
         </div>
 
-        <div className="mt-6">
+        <div className="mt-10 md:mt-14">
           <ProjectsScene />
         </div>
       </section>
@@ -151,15 +152,19 @@ export default async function Home() {
       {/* Contact */}
       <section
         id="contact"
-        className="
-          min-h-screen
-          px-6 pt-0 pb-12
-          md:px-10
-        "
+        aria-labelledby="contact-heading"
+        className="px-6 py-12 md:px-10 md:py-20"
       >
-        <h2 className="font-display text-base font-normal text-muted-foreground">
+        <h2
+          id="contact-heading"
+          className="font-display text-base font-normal text-muted-foreground"
+        >
           -- Contact
         </h2>
+
+        <div className="mt-6">
+          <ContactScene />
+        </div>
       </section>
     </Drawer>
   );

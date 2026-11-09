@@ -1,6 +1,8 @@
 "use client";
 
 import { MoonIcon, SunIcon } from "@phosphor-icons/react";
+import { useRef, type MouseEvent } from "react";
+import { flushSync } from "react-dom";
 
 import { useTheme } from "@/providers/theme-provider";
 import Tooltip from "./tooltip";
@@ -12,6 +14,66 @@ export type ThemeToggleProps = {
 export default function ThemeToggle({ className = "" }: ThemeToggleProps) {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
+  const iconRef = useRef<HTMLSpanElement>(null);
+  const transitioning = useRef(false);
+
+  async function handleThemeChange(event: MouseEvent<HTMLButtonElement>) {
+    if (transitioning.current) return;
+
+    if (
+      !document.startViewTransition ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      toggleTheme();
+      return;
+    }
+
+    const bounds = (
+      iconRef.current ?? event.currentTarget
+    ).getBoundingClientRect();
+
+    // Mouse/touch clicks start at the clicked position.
+    // Keyboard activation starts at the icon's center.
+    const x =
+      event.detail === 0 ? bounds.left + bounds.width / 2 : event.clientX;
+
+    const y =
+      event.detail === 0 ? bounds.top + bounds.height / 2 : event.clientY;
+    const radius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y),
+    );
+    const root = document.documentElement;
+    transitioning.current = true;
+    root.classList.add("theme-iris-transition");
+
+    const transition = document.startViewTransition(() => {
+      flushSync(() => toggleTheme());
+    });
+
+    try {
+      await transition.ready;
+      await root.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${radius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 650,
+          easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+          pseudoElement: "::view-transition-new(root)",
+        },
+      ).finished;
+    } catch {
+      // A skipped transition still applies the theme update.
+    } finally {
+      await transition.finished.catch(() => {});
+      root.classList.remove("theme-iris-transition");
+      transitioning.current = false;
+    }
+  }
 
   return (
     <Tooltip
@@ -24,7 +86,7 @@ export default function ThemeToggle({ className = "" }: ThemeToggleProps) {
     >
       <button
         type="button"
-        onClick={toggleTheme}
+        onClick={handleThemeChange}
         aria-label="Dark mode"
         aria-pressed={isDark}
         className={`
@@ -43,6 +105,7 @@ export default function ThemeToggle({ className = "" }: ThemeToggleProps) {
         `}
       >
         <span
+          ref={iconRef}
           className="
             flex
             w-10

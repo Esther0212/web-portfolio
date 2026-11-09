@@ -1,6 +1,7 @@
-import Drawer from "@/components/drawer";
-import Link from "next/link";
 import { cookies } from "next/headers";
+
+import Drawer from "@/components/drawer";
+import StackScene from "@/components/scenes/stack-scene";
 
 export const instant = false;
 
@@ -20,19 +21,20 @@ export default async function StackPage() {
         </>
       }
     >
-      <section className="min-h-screen px-6 py-8 md:px-10">
-        <h1>Stack</h1>
-
-        <p className="mt-6">
-          Your full Stack content goes here.
-        </p>
-
-        <Link
-        href="/#stack"
-        className="font-display text-muted-foreground"
+      <section
+        aria-labelledby="stack-heading"
+        className="min-h-screen px-6 py-12 md:px-10 md:py-20"
       >
-        ← BACK TO HOME
-      </Link>
+        <div className="mb-10 flex flex-wrap items-center justify-between gap-4 md:mb-14">
+          <h1
+            id="stack-heading"
+            className="font-heading text-4xl font-bold tracking-tight sm:text-5xl"
+          >
+            Stack
+          </h1>
+        </div>
+
+        <StackScene full />
       </section>
     </Drawer>
   );

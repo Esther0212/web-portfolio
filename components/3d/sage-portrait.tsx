@@ -56,7 +56,7 @@ export default function SagePortrait() {
       }
 
       timeoutRef.current = null;
-    }, 3000);
+    }, 6000);
   };
 
   const showBubble = clicked || bubbleClicked || (hovered && !dismissed);
