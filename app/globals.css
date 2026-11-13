@@ -855,11 +855,168 @@
   box-shadow: none;
 }
 
+/* Education cards follow the shared surface and spacing tokens. */
+.education-list {
+  display: grid;
+  gap: var(--content-spacing);
+  min-width: 0;
+}
+
+.education-card {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--card-foreground);
+}
+
+.education-summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: var(--content-spacing);
+  border-radius: var(--radius);
+  list-style: none;
+  cursor: pointer;
+}
+
+.education-summary::-webkit-details-marker {
+  display: none;
+}
+
+.education-summary:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+.education-school-icon {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--muted);
+  color: var(--primary);
+}
+
+.education-school {
+  display: grid;
+  min-width: 0;
+  gap: 0.375rem;
+  overflow-wrap: anywhere;
+}
+
+.education-school-title,
+.education-degree,
+.education-subheading {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.education-school-title,
+.education-degree {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: 1.4;
+}
+
+.education-school-name,
+.education-dates,
+.education-meta,
+.education-items {
+  color: var(--muted-foreground);
+  line-height: 1.7;
+}
+
+.education-school-name,
+.education-dates {
+  font-size: 0.875rem;
+}
+
+.education-dates {
+  grid-column: 2;
+}
+
+.education-toggle {
+  display: grid;
+  place-items: center;
+  grid-column: 3;
+  grid-row: 1;
+  width: 2.75rem;
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+
+.education-card[open] > summary .education-toggle svg {
+  transform: rotate(45deg);
+}
+
+.education-body {
+  display: grid;
+  gap: var(--content-spacing);
+  padding: var(--content-spacing);
+  border-top: 1px solid var(--border);
+  overflow-wrap: anywhere;
+}
+
+.education-degree {
+  margin-block: 0.75rem;
+}
+
+.education-subheading {
+  font-size: 1.125rem;
+}
+
+.education-items {
+  margin-block-start: 0.75rem;
+  padding-inline-start: 1.25rem;
+  list-style: disc;
+}
+
+.education-items > li + li {
+  margin-block-start: 0.375rem;
+}
+
+@media (min-width: 1280px) {
+  .education-summary {
+    grid-template-columns: auto minmax(0, 1fr) minmax(0, auto) auto;
+  }
+
+  .education-dates {
+    grid-column: 3;
+  }
+
+  .education-toggle {
+    grid-column: 4;
+  }
+}
+
 /* Contain images within Main. */
 .portfolio-content > main {
   position: relative;
   isolation: isolate;
   overflow: clip;
+}
+
+/* Compact: align with the header icon's left edge. */
+.portfolio-content > main > section:not(#home) {
+  padding-inline: calc(1rem + 10px);
+}
+
+/* Match the header's sm:px-6 spacing. */
+@media (min-width: 640px) {
+  .portfolio-content > main > section:not(#home) {
+    padding-inline: calc(1.5rem + 10px);
+  }
+}
+
+/* Desktop: keep your current generous padding. */
+@media (min-width: 1024px) {
+  .portfolio-content > main > section:not(#home) {
+    padding-inline: clamp(2rem, 18vw, 18rem);
+  }
 }
 
 /* Allow images to overflow Home into neighboring sections. */
@@ -1054,14 +1211,15 @@ html.theme-iris-transition *::after {
 
 .about-hobbies-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
   align-items: stretch;
   gap: var(--space-paragraph);
 }
 
-@media (min-width: 640px) {
+@media (max-width: 639px) {
   .about-hobbies-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -1069,12 +1227,6 @@ html.theme-iris-transition *::after {
   .about-layout {
     grid-template-columns: 20rem minmax(0, 1fr);
     column-gap: 10rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  .about-hobbies-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -1614,4 +1766,176 @@ html.theme-iris-transition *::after {
     background: var(--primary);
     color: var(--primary-foreground);
   }
+}
+
+/* Shared expandable card */
+
+.expandable-card {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--card-foreground);
+}
+
+.expandable-card-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: var(--content-spacing);
+  border-radius: var(--radius);
+  list-style: none;
+  cursor: pointer;
+}
+
+.expandable-card-summary::-webkit-details-marker {
+  display: none;
+}
+
+.expandable-card-summary:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+.expandable-card-heading {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 1rem;
+}
+
+.expandable-card-icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 3.5rem;
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--muted);
+  color: var(--primary);
+}
+
+.expandable-card-label {
+  display: grid;
+  min-width: 0;
+  gap: 0.375rem;
+  overflow-wrap: anywhere;
+}
+
+.expandable-card-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.expandable-card-description,
+.expandable-card-meta {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.expandable-card-meta {
+  grid-column: 1;
+}
+
+.expandable-card-toggle {
+  display: grid;
+  grid-column: 2;
+  grid-row: 1;
+  place-items: center;
+  width: 2.75rem;
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+
+.expandable-card[open] > summary .expandable-card-toggle svg {
+  transform: rotate(45deg);
+}
+
+.expandable-card-body {
+  display: grid;
+  gap: var(--content-spacing);
+  padding: var(--content-spacing);
+  border-top: 1px solid var(--border);
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 1280px) {
+  .expandable-card-summary {
+    grid-template-columns: minmax(0, 1fr) minmax(0, auto) auto;
+  }
+
+  .expandable-card-meta {
+    grid-column: 2;
+  }
+
+  .expandable-card-toggle {
+    grid-column: 3;
+  }
+}
+
+/* Static cards have no toggle column or clickable header. */
+.expandable-card-static > .expandable-card-summary {
+  grid-template-columns: minmax(0, 1fr);
+  cursor: default;
+}
+
+@media (min-width: 1280px) {
+  .expandable-card-static > .expandable-card-summary {
+    grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+  }
+}
+
+/* Education content */
+
+.education-list {
+  display: grid;
+  min-width: 0;
+  gap: var(--content-spacing);
+}
+
+.education-degree,
+.education-subheading {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.education-degree {
+  margin-block: 0.75rem;
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: 1.4;
+}
+
+.education-subheading {
+  font-size: 1.125rem;
+}
+
+.education-meta,
+.education-items {
+  color: var(--muted-foreground);
+  line-height: 1.7;
+}
+
+.education-items {
+  margin-block-start: 0.75rem;
+  padding-inline-start: 1.25rem;
+  list-style: disc;
+}
+
+.education-items > li + li {
+  margin-block-start: 0.375rem;
+}
+
+.education-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: inherit;
 }

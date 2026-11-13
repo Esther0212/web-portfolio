@@ -37,9 +37,9 @@ function AboutText({ parts }: { parts: AboutTextPart[] }) {
 }
 
 export default function AboutScene({ full = false }: AboutSceneProps) {
-  const paragraphs = about.biography.filter(
-    (paragraph) => full || !paragraph.fullOnly,
-  );
+  const paragraphs = full
+  ? about.biography
+  : about.biography.slice(0, 1);
 
   return (
     <>

@@ -119,39 +119,53 @@ export default function SagePortrait() {
   }, []);
 
   return (
-    <div className="relative isolate h-full w-full overflow-visible">
+    <div
+      className="
+        overflow-visible
+        h-full w-full
+        relative isolate
+      "
+    >
       {/* Sage and ambient lighting move together */}
-      <div className="absolute inset-0">
+      <div
+        className="
+          absolute inset-0
+        "
+      >
         {/* Main ambient glow */}
         <div
           aria-hidden="true"
           className="
-          pointer-events-none
-          absolute left-1/2 top-1/2 z-0
-          h-[75%] w-[85%]
-          -translate-x-1/2 -translate-y-1/2
-          rounded-full
-          bg-[radial-gradient(ellipse_at_center,var(--primary)_0%,transparent_70%)]
-          opacity-55 blur-[65px]
-        "
+            z-0
+            w-[85%]
+            bg-[radial-gradient(circle_at_center,var(--primary)_0%,transparent_70%)]
+            rounded-full
+            pointer-events-none opacity-55
+            absolute left-1/2 top-1/2 aspect-square -translate-x-1/2 -translate-y-1/2 blur-[65px]
+          "
         />
 
         {/* Secondary ambient glow */}
         <div
           aria-hidden="true"
           className="
-          pointer-events-none
-          absolute left-1/2 top-1/2 z-0
-          h-[55%] w-[65%]
-          -translate-x-1/2 -translate-y-1/2
-          rounded-full
-          bg-[radial-gradient(ellipse_at_center,var(--primary)_0%,transparent_75%)]
-          opacity-50 blur-[90px]
-        "
+            z-0
+            w-[65%]
+            bg-[radial-gradient(circle_at_center,var(--primary)_0%,transparent_75%)]
+            rounded-full
+            pointer-events-none opacity-50
+            absolute left-1/2 top-1/2 aspect-square -translate-x-1/2 -translate-y-1/2 blur-[90px]
+          "
         />
 
         {/* Sage 3D model */}
-        <div className="relative z-10 h-full w-full">
+        <div
+          className="
+            z-10
+            h-full w-full
+            relative
+          "
+        >
           <SageScene
             onHoverChange={(isHovered) => {
               if (isHovered) {

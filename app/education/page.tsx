@@ -1,13 +1,12 @@
 import Drawer from "@/components/drawer";
-import Link from "next/link";
+import EducationScene from "@/components/scenes/education-scene";
 import { cookies } from "next/headers";
 
 export const instant = false;
 
 export default async function EducationPage() {
   const cookieStore = await cookies();
-  const drawerOpen =
-    cookieStore.get("portfolio-drawer-open")?.value === "true";
+  const drawerOpen = cookieStore.get("portfolio-drawer-open")?.value === "true";
 
   return (
     <Drawer
@@ -20,19 +19,20 @@ export default async function EducationPage() {
         </>
       }
     >
-      <section className="min-h-screen px-6 py-8 md:px-10">
-        <h1>Education</h1>
-
-        <p className="mt-6">
-          Your full Education content goes here.
-        </p>
-
-        <Link
-        href="/#education"
-        className="font-display text-muted-foreground"
+      <section
+        aria-labelledby="education-heading"
+        className="min-h-screen py-12 md:py-20"
       >
-        ← BACK TO HOME
-      </Link>
+        <h1
+          id="education-heading"
+          className="font-heading text-4xl font-bold tracking-tight sm:text-5xl"
+        >
+          Education
+        </h1>
+
+        <div className="mt-10 md:mt-14">
+          <EducationScene collapsible />
+        </div>
       </section>
     </Drawer>
   );
